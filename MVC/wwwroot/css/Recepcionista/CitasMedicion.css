@@ -1,0 +1,156 @@
+body {
+    background-color: #f0f0f0;
+}
+
+.main-container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.cedula-container {
+    margin-bottom: 20px;
+}
+
+.cedula-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px; 
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.calendar-container {
+    margin: 30px 0; 
+}
+
+.form-container {
+    margin-top: 20px; 
+}
+
+#cedulaLabel {
+    font-weight: bold; 
+}
+
+input, select, .btn-orange {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+input, select {
+    border: 1px solid #ccc; 
+    width: 100%; 
+}
+
+#cedula {
+    width: auto; 
+    padding: 5px;
+    margin: 0;
+}
+
+#date {
+    width: 100%; 
+}
+
+input, select {
+    margin: 10px 0;
+}
+
+.btn-orange {
+    background-color: #ff8000;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 10px 0; 
+    width: auto; 
+    margin-bottom: 20px;
+}
+
+    .btn-orange:hover {
+        background-color: #cc6600;
+    }
+
+#cancelAppointment {
+    background-color: #D72828;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 10px 20px;
+    margin: 10px 0;
+    width: auto;
+}
+
+    #cancelAppointment:hover {
+        background-color: #661515;
+    }
+
+    #cancelAppointment.disabled {
+        background-color: #d3d3d3;
+        cursor: not-allowed;
+    }
+
+.greyed-out {
+    background-color: #d3d3d3 !important;
+    color: #808080 !important;
+    cursor: not-allowed;
+}
+
+    .greyed-out:hover {
+        background-color: #d3d3d3 !important;
+        color: #808080 !important;
+    }
+
+#instructions {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.form-container p {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.input-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.input-group {
+    flex: 1;
+}
+
+#addAppointment {
+    width: auto;
+}
+
+.greyed-out {
+    background-color: #d3d3d3 !important;
+    color: #808080 !important;
+    cursor: not-allowed;
+}
+
+    .greyed-out:hover {
+        background-color: #d3d3d3 !important;
+        color: #808080 !important;
+    }

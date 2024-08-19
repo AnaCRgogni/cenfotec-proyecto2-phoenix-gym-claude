@@ -1,0 +1,19 @@
+USE [PhoenixFitness]
+GO
+CREATE OR ALTER PROCEDURE [dbo].[sp_addPago]
+(
+    @fechaPago DATE,
+    @metodoPago NVARCHAR(50),
+    @comprobante NVARCHAR(150),
+    @estado BIT,
+    @cedulaUsuario NVARCHAR(25),
+    @idMembresia INT
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO [dbo].[TPago] (fechaPago, metodoPago, comprobante, estado, cedulaUsuario, idMembresia)
+    VALUES (@fechaPago, @metodoPago, @comprobante, @estado, @cedulaUsuario, @idMembresia);
+END
+GO

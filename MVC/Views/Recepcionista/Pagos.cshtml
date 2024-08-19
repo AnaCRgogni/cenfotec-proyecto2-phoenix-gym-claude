@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Pagos";
+    Layout = "~/Views/Shared/_LayoutRecepcionista.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Recepcionista/Pagos.css" defer />
+<script src="~/js/Pages/Recepcionista/Pagos.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+
+
+<div class="centered-container">
+    <div class="content">
+        <div class="text-center">
+            <h1 class="display-4">Pagos Entrantes</h1>
+        </div>
+        <div class="table-responsive">
+            <table id="datatable_pago" class="table">
+                <caption>
+                        Estos son los pagos pendientes a revisar 
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="centered">Nombre</th>
+                        <th class="centered">Cédula</th>
+                        <th class="centered">Comprobante</th>
+                        <th class="centered">Fecha de Pago</th>
+                        <th class="centered">Estado del Pago</th>
+                        <th class="centered">Total ₡</th>
+                        <th class="centered">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody_pago"></tbody>
+            </table>
+        </div>
+    </div>  
+</div>
+
+<div class="centered-container">
+    <div class="content">
+        <div class="text-center">
+            <h1 class="display-4">Clientes</h1>
+        </div>
+        <div class="table-responsive">
+            <table id="datatable_clientes" class="table">
+                <caption>
+                    Busque un cliente para subir un comprobante a su nombre
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="centered">Nombre</th>
+                        <th class="centered">Cédula</th>
+                        <th class="centered">E-mail</th>
+                        <th class="centered">Membresía</th>
+                        <th class="centered">Subir comprobante</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody_clientes"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,21 @@
+USE [PhoenixFitness]
+GO
+
+/****** Object:  Table [dbo].[TEntrenamiento]    Script Date: 8/1/2024 5:54:23 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TEntrenamiento](
+	[IDEntrenamiento] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [varchar](255) NULL,
+	[Fecha] [date] NOT NULL,
+	[IDCliente] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IDEntrenamiento] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO

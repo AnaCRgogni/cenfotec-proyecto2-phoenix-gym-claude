@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Descuentos";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Administrador/Descuentos.css" defer />
+<script src="~/js/Pages/Administrador/Descuentos.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="text-center">
+    <h1 class="display-4">Administrador de Descuentos</h1>
+</div>
+
+<div class="form-container">
+    <h1 class="display-6 text-center">Crear código de descuento</h1>
+    <form id="formDescuento" class="needs-validation" novalidate>
+        <div id="createMembresia">
+            <div class="col-md-6 form-group">
+                <label for="codigo">Código</label>
+                <input type="text" class="form-control" id="codigo" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="porcentaje">Porcentaje</label>
+                <input type="number" class="form-control" id="porcentaje" required />
+            </div>
+        </div>
+        <div class="button-group d-flex justify-content-center">
+            <button type="submit" class="btn btn-orange" id="sendDiscount">Crear</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="table-container">
+        <h1 class="display-12 text-center">Lista de Descuentos</h1>
+        <div class="container m-12">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <table id="datatable_descuentos" class="table">
+                        <caption class="text-center">
+                            Tabla para ver descuentos
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th class="centered">Código</th>
+                                <th class="centered">Porcentaje</th>
+                                <th class="centered">Estado</th>
+                                <th class="centered">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody_descuentos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+Metodo que popula la informacion del pago al Sweet alert
+
+USE PhoenixFitness;
+GO
+
+-- Check if the procedure already exists and drop it if it does
+IF OBJECT_ID('dbo.sp_getSinpe2', 'P') IS NOT NULL
+BEGIN 
+    DROP PROCEDURE dbo.sp_getSinpe2;
+END;
+GO
+
+-- Create the new or updated stored procedure 
+CREATE PROCEDURE sp_getSinpe2
+    @Cedula NVARCHAR(25) -- Parameter for cedula
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Declare a table variable to store results
+    DECLARE @PagosPrevios TABLE (
+        comprobante NVARCHAR(150), 
+        fechaPago DATE,
+        estadoUsuario BIT,
+        estadoPago BIT,
+        total FLOAT
+    );
+
+    -- Insert data into the table variable with the conditional total calculation
+    INSERT INTO @PagosPrevios (comprobante, fechaPago, estadoUsuario, estadoPago, total)
+    SELECT DISTINCT -- Use DISTINCT to avoid duplicate rows
+        TPago.comprobante, 
+        TPago.fechaPago, 
+        TUsuario.estado AS estadoUsuario,
+        TPago.estado AS estadoPago,
+        CASE 
+            WHEN TUsuario.estado = 0 THEN TMembresia.mensualidad + TMembresia.matricula
+            WHEN TUsuario.estado = 1 THEN TMembresia.mensualidad
+        END AS total
+    FROM TPago
+    JOIN TMembresia 
+        ON TPago.idMembresia = TMembresia.idMembresia
+    JOIN TUsuario 
+        ON TUsuario.idMembresia = TMembresia.idMembresia
+    WHERE TUsuario.cedula = @Cedula; -- Apply filtering based on cedula
+    
+    -- Check if there are rows in the table variable
+    IF EXISTS (SELECT 1 FROM @PagosPrevios)
+    BEGIN
+        -- Select data from the table variable to output the results
+        SELECT comprobante, fechaPago, estadoUsuario, estadoPago, total FROM @PagosPrevios;
+    END
+    ELSE
+    BEGIN
+        -- Return NULL if no records are found
+        SELECT NULL AS Result;
+    END
+END;
+GO
+-----------------------------------------------------
+
+Ejemplo para que un cliente agregue un comprobante a la BD 
+
+INSERT INTO TPago (fechaPago, metodoPago, comprobante, estado, cedulaUsuario, idMembresia)
+VALUES 
+('2024-07-01', 'Tarjeta de Crédito', 'COMP12345', 0, '1234567890', 1)
+
+
+-----------------------------------------------------------
+Metodo para que el estado se cambie a Activo
+
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_updateEstadoCliente]    Script Date: 04/08/2024 07:02:07 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the new or updated stored procedure 
+ALTER PROCEDURE [dbo].[sp_updateEstadoCliente]
+    @Cedula NVARCHAR(25) -- Parameter for cedula
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Update the estado field to 1 for the given cedula in the TUsuario table
+    UPDATE TUsuario
+    SET estado = 1
+    WHERE cedula = @Cedula;
+
+    -- Update the estado field in TPago for the record with the most recent fechaPago
+    UPDATE TPago
+    SET estado = 1
+    WHERE fechaPago = (
+        SELECT MAX(fechaPago)
+        FROM TPago
+        WHERE cedulaUsuario = @Cedula
+    )
+    AND cedulaUsuario = @Cedula;
+
+END;
+

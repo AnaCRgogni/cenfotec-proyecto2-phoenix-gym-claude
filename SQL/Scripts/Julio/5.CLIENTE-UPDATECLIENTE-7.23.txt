@@ -1,0 +1,72 @@
+SCRIPT UPDATE ACTUALIZADO: 
+
+USE [PhoenixFitness]
+GO
+/** Object:  StoredProcedure [dbo].[sp_updateCliente2]    Script Date: 7/23/2024 11:17:01 AM **/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_updateCliente]
+    @cedula NVARCHAR(25),
+    @nombre NVARCHAR(25),
+    @apellido1 NVARCHAR(25),
+    @apellido2 NVARCHAR(25),
+    @email NVARCHAR(25),
+    @contrasena NVARCHAR(100),
+    @telefono NVARCHAR(25),
+    @fotoIdCliente NVARCHAR(200),
+    @fotoPerfilCliente NVARCHAR(200),
+    @fechaNacimiento DATE,
+    @generoCliente NVARCHAR(25),
+    @idMembresia INT,
+    @estado BIT,
+    @newSalt NVARCHAR(25), -- Nuevo parámetro para el salt
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Check if email exists for another user
+    IF EXISTS (SELECT 1 FROM TUsuario WHERE email = @email AND cedula != @cedula)
+    BEGIN
+        SET @ReturnValue = -1; -- Email already exists, set return value to -1
+        RETURN; -- Exit the procedure
+    END
+
+    -- Actualizar la tabla TUsuario
+    UPDATE TUsuario
+    SET 
+        nombre = @nombre,
+        apellido1 = @apellido1,
+        apellido2 = @apellido2,
+        email = @email,
+        contrasena = @contrasena,
+        telefono = @telefono,
+        fotoIdCliente = @fotoIdCliente,
+        fotoPerfilCliente = @fotoPerfilCliente,
+        fechaNacimiento = @fechaNacimiento,
+        generoCliente = @generoCliente,
+        idMembresia = @idMembresia,
+        estado = @estado
+    WHERE
+        cedula = @cedula;
+
+    -- Actualizar la tabla TSalt
+    IF @newSalt IS NOT NULL
+    BEGIN
+        IF EXISTS (SELECT 1 FROM TUsuario WHERE cedula = @cedula)
+        BEGIN
+            UPDATE TSalt
+            SET salt = @newSalt
+            WHERE cedulaUsuario = @cedula;
+        END
+        ELSE
+        BEGIN
+            SET @ReturnValue = -2; -- Cedula does not exist, set return value to -2
+            RETURN; -- Exit the procedure
+        END
+    END
+
+    SET @ReturnValue = 0; -- Successfully updated, set return value to 0
+END;

@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLandingPage.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/LandingPage/LandingPage.css" />
+
+<div>
+    <div  id="bannercontainer">
+        <img src="~/Images/pic2.jpg">
+    </div>
+    <div id="section2">
+        @* QUEDA PENDIENTE TAL VEZ PONER UN BANNER *@
+        <div class="banner-principal" style="background-image: url('https://www.example.com/your-image.jpg');">
+            <h1>Bienvenido a Phoenix Fitness</h1>
+            <p class="subtitulo">¡Tu camino hacia la salud y el bienestar comienza aquí!</p>
+        </div>
+    </div
+</div>
+
+<div>
+    <div class="container mt-5">
+        <h2 class="text-center">Nuestros Servicios</h2>
+        <div class="row text-center mt-4">
+            <div class="col-md-6 mb-4">
+                <img src="~/Images/ep.jpg" alt="Entrenamiento Personal" class="img-fluid service-img">
+                <p id="pTitulo">Entrenamiento Personal</p>
+                <p class="servicio-descripcion">Entrenadores expertos para guiarte en tu camino.</p>
+            </div>
+            <div class="col-md-6 mb-4">
+                <img src="~/Images/clase.jpg" alt="Clases Grupales" class="img-fluid service-img">
+                <p id="pTitulo"> Clases Grupales</p>
+                <p class="servicio-descripcion">Participa en clases dinámicas y motivadoras.</p>
+            </div>
+            <div class="col-md-6 mb-4">
+                <img src="~/Images/equipo.jpg" alt="Equipos de Última Generación" class="img-fluid service-img">
+                <p id="pTitulo">Equipos Modernos</p>
+                <p class="servicio-descripcion">Máquinas y equipos modernos para tu entrenamiento.</p>
+            </div>
+            <div class="col-md-6 mb-4">
+                <img src="~/Images/medicion.jpg" alt="Asesoría Nutricional" class="img-fluid service-img">
+                <p id="pTitulo">Mediciones Corporales</p>
+                <p class="servicio-descripcion">Seguimiento para asegurarnos que estás alcanzando tus metas.</p>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div id="testimonios-carousel" class="carousel slide">
+            <div class="carousel-inner">
+                <div class=" carousel-item active">
+                    <div class="d-flex justify-content-center">
+                        <img src="~/Images/juan.jpg" class="rounded-circle" alt="Cliente 1">
+                        <div class="carousel-caption">
+                            <p>"Phoenix Gym me ayudó a alcanzar mis metas de fitness. ¡Los entrenadores son increíbles!" - Juan Pérez</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex justify-content-center">
+                        <img src="~/Images/maria.jpg" class="rounded-circle" alt="Cliente 2">
+                        <div class="carousel-caption">
+                            <p>"Las clases grupales son muy motivadoras y divertidas. ¡Me encanta entrenar aquí!" - María López</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex justify-content-center">
+                        <img src="~/Images/carlos.jpg" class="rounded-circle" alt="Cliente 3">
+                        <div class="carousel-caption">
+                            <p>"El ambiente es excelente y los equipos son de primera. Muy recomendado." - Carlos Fernández</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="d-flex justify-content-center">
+                        <img src="~/Images/wendy.jpg" class="rounded-circle" alt="Cliente 4">
+                        <div class="carousel-caption">
+                            <p>"Me encanta el seguimiento con mediciones corporales, ¡ha cambiado mi vida!" - Wendy García</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#testimonios-carousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </a>
+            <a class="carousel-control-next" href="#testimonios-carousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </a>
+        </div>
+
+    <div class="contacto mt-5">
+        <h2 class="text-center">Contacto</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p id="pTitulo"> Dirección</p>
+                    <p class="servicio-descripcion">Frente a la facultad de educación de la Universidad de Costa Rica</p>
+                    <p id="pTitulo"> Teléfono</p>
+                    <p class="servicio-descripcion">2258-7845</p>
+                    <p id="pTitulo"> Correo Electrónico</p>
+                    <p class="servicio-descripcion">phoenixfitness@gmail.com</p>
+                </div>
+                <div class="col-md-6 d-flex align-items-center justify-content-center">
+                    <img src="~/Images/gym.webp" alt="Gimnasio" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

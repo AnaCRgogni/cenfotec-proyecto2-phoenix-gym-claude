@@ -1,0 +1,48 @@
+@model MVC.Models.ResetPasswordModel
+
+@{
+    ViewData["Title"] = "Reestablecer Contraseña";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+    var token = Context.Request.Query["token"];
+    var email = Context.Request.Query["email"];
+}
+
+<link rel="stylesheet" href="~/css/LandingPage/CambiarContrasena.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="~/js/Pages/LandingPage/ReestablecerContrasena.js" defer></script>
+
+<div class="text-center">
+    <h1 class="display-4">Recuperar Contraseña</h1>
+</div>
+
+<div class="form-container">
+    <div id="reset-form" style="display: block;">
+        <form id="resetPasswordForm" class="needs-validation" novalidate>
+            <input type="hidden" id="token" name="token" value="@token" />
+            <input type="hidden" id="email" name="email" value="@email" />
+
+            <div class="form-group" style="margin-top: 20px;">
+                <label style="width:50%;" for="password">Contraseña Nueva</label>
+                <div style="width:50%;" class="input-container">
+                    <input type="password" class="form-control" id="password" name="password" required />
+                    <div>
+                        <input type="checkbox" id="showPassword1"> Mostrar Contraseña
+                    </div>
+                    <p>Ingrese su contraseña nueva.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label style="width:50%;" for="confirmPassword">Confirmar Contraseña Nueva</label>
+                <div style="width:50%;" class="input-container">
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required />
+                    <div>
+                        <input type="checkbox" id="showPassword2"> Mostrar Contraseña
+                    </div>
+                    <p>Ingrese de nuevo su contraseña nueva.</p>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-submit">Guardar</button>
+        </form>
+    </div>
+</div>

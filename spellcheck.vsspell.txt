@@ -1,0 +1,4 @@
+{
+  "Language": "es-ES",
+  "CodeAnalysisCulture": "es-ES"
+}

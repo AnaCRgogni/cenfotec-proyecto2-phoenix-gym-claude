@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Usuarios";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<script src="~/js/Pages/Administrador/Usuarios.js" defer></script>
+<link rel="stylesheet" href="~/css/Administrador/Usuarios.css" defer />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="centered-container">
+    <div class="content">
+        <div class="text-center">
+            <h1 class="display-4">Usuarios</h1>
+        </div>
+
+        <div class="table-responsive">
+            <table id="datatable_users" class="table">
+                <caption>
+                    Tabla para buscar usuarios
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="centered">Nombre</th>
+                        <th class="centered">Cédula</th>
+                        <th class="centered">E-mail</th>
+                        <th class="centered">Tipo de Usuario</th>
+                        <th class="centered">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody_users"></tbody>
+            </table>
+        </div>
+    </div>
+</div>

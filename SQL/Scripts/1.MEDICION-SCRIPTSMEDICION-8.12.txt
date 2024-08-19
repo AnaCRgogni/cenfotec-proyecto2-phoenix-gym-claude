@@ -1,0 +1,118 @@
+USE [PhoenixFitness]
+GO
+
+/****** Object:  Table [dbo].[TEntrenamientoCompartido]    Script Date: 8/12/2024 8:58:10 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TEntrenamientoCompartido](
+	[idEntrenamientoComp] [int] IDENTITY(1,1) NOT NULL,
+	[idEntrenamiento] [int] NOT NULL,
+	[cedulaCliente] [nvarchar](25) NOT NULL,
+	[cedulaUsuario] [nvarchar](25) NOT NULL,
+ CONSTRAINT [PK_TEntrenamientoCompartido] PRIMARY KEY CLUSTERED 
+(
+	[idEntrenamientoComp] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+-------------------------------------------------
+
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_addEntrenamientoCompartido]    Script Date: 8/12/2024 8:56:26 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[sp_addEntrenamientoCompartido]
+    @idEntrenamiento INT,
+    @cedulaCliente NVARCHAR(25),
+    @cedulaUsuario NVARCHAR(25),
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verifica si ya existe un entrenamiento compartido con el mismo idEntrenamiento para cedulasUsuario
+    IF EXISTS (SELECT 1 FROM TEntrenamientoCompartido WHERE idEntrenamiento = @idEntrenamiento AND cedulaUsuario = @cedulaUsuario)
+    BEGIN
+        SET @ReturnValue = -1; -- Ya existe un entrenamiento compartido con el mismo idEntrenamiento para esta cedulaUsuario
+        RETURN; -- Salir del procedimiento
+    END
+
+    -- Inserta los datos en la tabla
+    INSERT INTO TEntrenamientoCompartido (idEntrenamiento, cedulaCliente, cedulaUsuario)
+    VALUES (@idEntrenamiento, @cedulaCliente, @cedulaUsuario);
+
+    SET @ReturnValue = 0; -- Inserción exitosa, establecer valor de retorno a 0
+END;
+
+
+-------------------------------------------------
+
+
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_GetEntrenamientosCompartidosByCliente]    Script Date: 8/12/2024 8:55:48 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_GetEntrenamientosCompartidosByCliente]
+    @cedulaCliente NVARCHAR(25),
+    @idEntrenamiento INT
+AS
+BEGIN
+    SELECT 
+        *
+    FROM 
+        TEntrenamientoCompartido
+    WHERE 
+        cedulaCliente = @cedulaCliente
+        AND idEntrenamiento = @idEntrenamiento;
+END
+
+-------------------------------------------------
+
+USE [PhoenixFitness]
+GO
+
+CREATE PROCEDURE [dbo].[sp_DeleteEntrenamientoById]
+    @idEntrenamiento INT
+AS
+BEGIN
+    -- Eliminar registros de TEntrenamientoCompartido que coincidan con idEntrenamiento
+    DELETE FROM [dbo].[TEntrenamientoCompartido]
+    WHERE [idEntrenamiento] = @idEntrenamiento;
+
+    -- Eliminar el registro de TEntrenamiento que coincida con idEntrenamiento
+    DELETE FROM [dbo].[TEntrenamiento]
+    WHERE [IDEntrenamiento] = @idEntrenamiento;
+END
+GO
+
+-------------------------------------------------
+
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_DeleteEntrenamientoEntrenamientoCompartido]    Script Date: 8/12/2024 8:59:32 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[sp_DeleteEntrenamientoEntrenamientoCompartido]
+    @idEntrenamientoComp INT
+AS
+BEGIN
+    -- Elimina el registro de TEntrenamiento basado en el idEntrenamiento
+    DELETE FROM TEntrenamientoCompartido
+    WHERE idEntrenamientoComp = @idEntrenamientoComp;
+END;

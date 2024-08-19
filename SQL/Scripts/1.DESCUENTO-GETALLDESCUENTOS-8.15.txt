@@ -1,0 +1,10 @@
+CREATE PROCEDURE [dbo].[sp_getAllDescuentos]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Seleccionar todos los registros de la tabla TDescuento
+    SELECT [idDescuento], [codigo], [porcentaje], [estado]
+    FROM [dbo].[TDescuento];
+END;
+GO

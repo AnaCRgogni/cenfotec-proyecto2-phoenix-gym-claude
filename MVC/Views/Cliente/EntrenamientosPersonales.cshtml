@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Entrenamientos Personales";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+@model MVC.Models.HorarioEntrenadorPersonalModel
+
+<link rel="stylesheet" href="~/css/Cliente/EntrenamientosPersonales.css" defer />
+<script src="~/js/Pages/Cliente/EntrenamientosPersonales.js" defer></script>
+<link rel="stylesheet" href="~/Calendario/evo-calendar/css/evo-calendar.css">
+<script src="~/Calendario/evo-calendar/js/evo-calendar.js"></script>
+
+<div class="main-container">
+
+    <div>
+        <form id="formEntrenador">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="trainer">Entrenador:</label>
+                    <select id="trainer"></select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" required disabled />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label for="email">Correo</label>
+                    <input type="text" class="form-control" id="email" required disabled />
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="tarifaHora">Tarifa por Hora</label>
+                    <input type="number" class="form-control" id="tarifaHora" required disabled />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="evoCalendar" class="calendar-container"></div>
+
+    <div class="form-container">
+        <p id="instructions">Haga click en un evento del calendario para poder reservarlo o cancelar la reservación.</p>
+            <div class="input-row">
+                <div class="button-container">
+                    <button type="button" id="bookAppointment" class="bookAppointment">Reservar Entrenamiento</button>
+                    <button type="button" id="cancelAppointment" class="cancelAppointment">Cancelar Reserva</button>
+                </div>
+            </div>
+    </div>
+
+</div>

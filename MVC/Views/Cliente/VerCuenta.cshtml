@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Mi Cuenta";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Cliente/CrearCuenta.css" defer />
+<script src="~/js/Pages/Cliente/VerCuenta.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="text-center">
+    <h1 class="display-4">Mi Cuenta</h1>
+</div>
+
+<div class="form-container">
+    <form id="formCliente" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required disabled />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="apellido1">Apellido 1</label>
+                <input type="text" class="form-control" id="apellido1" required disabled />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="apellido2">Apellido 2</label>
+                <input type="text" class="form-control" id="apellido2" required disabled />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" required disabled />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="email">Correo</label>
+                <input type="text" class="form-control" id="email" required />
+                <div class="invalid-feedback">
+                    Usar formato: Ejemplo@email.com
+                </div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fechaNacimiento" style="text-align:center" max="@DateTime.Now.ToString("yyyy-MM-dd")" required disabled />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group text-center">
+                <label for="contrasena">Contraseña:</label>
+                <button type="button" class="btn btn-submit" id="passBtn" onclick="location.href='@Url.Action("CambiarContrasena", "LandingPage")'">Cambiar</button>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="generoCliente">Género</label>
+                <select class="form-control" id="generoCliente" required disabled>
+                    <option value="" disabled selected>Seleccione su genero</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="otro">Otro</option>
+                    <option value="nodecir">Prefiero no decir</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Div de Cedula y su imagen -->
+            <div class="col-md-6 form-group">
+                <div class="form-group mb-3">
+                    <label for="cedula">Cedula</label>
+                    <input type="number" class="form-control" id="cedula" required maxlength="9" disabled />
+                </div>
+                <img src="" id="imgFotoCedula" height="auto" width="300px" class="mt-2" />
+            </div>
+            <div class="col-md-6 d-flex flex-column align-items-center">
+                <div class="form-group mb-3">
+                    <label for="fotoPerfilCliente">Foto de Perfil</label>
+                    <input type="file" class="form-control" id="fotoPerfilCliente" accept=".png, .jpeg, .jpg" required />
+                </div>
+                <img src="" id="imgFotoPerfil" height="auto" width="300px" class="mt-2" />
+            </div>
+        </div>
+
+        <div class="button-group d-flex justify-content-center">
+            <button type="submit" class="btn btn-submit" id="updateBtn">Actualizar Información</button>
+            <button type="submit" class="btn btn-submit" id="LogOutBtn">Cerrar Sesión</button>
+        </div>
+
+    </form>
+</div>

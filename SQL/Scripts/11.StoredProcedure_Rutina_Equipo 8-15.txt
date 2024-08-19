@@ -1,0 +1,140 @@
+CREATE  PROCEDURE [dbo].[sp_deleteRutina] 
+	@idRut NVARCHAR(25)
+AS
+BEGIN
+	DELETE FROM TSets
+	WHERE IDRutina = @idRut;
+    DELETE FROM trutina
+    WHERE IDRutina = @idRut;
+END;
+
+--------------------------------------------------------Update Maquina
+
+CREATE PROCEDURE [dbo].[sp_updateMaquina]
+    @Id INT,
+    @Name NVARCHAR(255),
+    @Description NVARCHAR(500) = NULL,
+    @Picturelink NVARCHAR(500) = NULL,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Check if the machine exists
+    IF NOT EXISTS (SELECT 1 FROM TMaquina WHERE Id = @Id)
+    BEGIN
+        -- Machine does not exist
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Update the existing machine
+    UPDATE TMaquina
+    SET Name = @Name,
+        Description = @Description,
+        Picturelink = @Picturelink
+    WHERE Id = @Id;
+
+    -- Return success
+    SET @ReturnValue = 1;
+END;
+
+
+--------------------------------------------------------Update Ejercicio 
+
+CREATE PROCEDURE [dbo].[sp_updateEjercicio]
+    @Id INT,
+    @Nombre VARCHAR(255),
+    @Descripcion TEXT,
+    @Imagen VARCHAR(255),
+    @MaquinaID INT,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Check if the exercise exists
+    IF NOT EXISTS (SELECT 1 FROM TEjercicio WHERE EjercicioID = @Id)
+    BEGIN
+        -- Exercise does not exist
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Update the existing exercise
+    UPDATE TEjercicio
+    SET Nombre = @Nombre,
+        Descripcion = @Descripcion,
+        Imagen = @Imagen,
+        MaquinaID = @MaquinaID
+    WHERE EjercicioID = @Id;
+
+    -- Return success
+    SET @ReturnValue = 1;
+END;
+
+--------------------------------------------------------Delete Maquina
+
+CREATE PROCEDURE [dbo].[sp_deleteMaquina]
+    @Id INT,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Check if the machine exists
+    IF NOT EXISTS (SELECT 1 FROM TMaquina WHERE Id = @Id)
+    BEGIN
+        -- Machine does not exist
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Check if the machine is referenced in TEjercicio as MaquinaID
+    IF EXISTS (SELECT 1 FROM TEjercicio WHERE MaquinaID = @Id)
+    BEGIN
+        -- Machine is referenced in TEjercicio
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Delete the machine
+    DELETE FROM TMaquina
+    WHERE Id = @Id;
+
+    -- Return success
+    SET @ReturnValue = 1;
+END;
+
+--------------------------------------------------------Delete Ejercicios
+
+CREATE PROCEDURE [dbo].[sp_deleteEjercicio]
+    @Id INT,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Check if the exercise exists
+    IF NOT EXISTS (SELECT 1 FROM TEjercicio WHERE EjercicioID = @Id)
+    BEGIN
+        -- Exercise does not exist
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Check if the exercise is referenced in TSets as IDEjercicios
+    IF EXISTS (SELECT 1 FROM TSets WHERE IDEjercicios = @Id)
+    BEGIN
+        -- Exercise is referenced in TSets
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Delete the exercise
+    DELETE FROM TEjercicio
+    WHERE EjercicioID = @Id;
+
+    -- Return success
+    SET @ReturnValue = 1;
+END;

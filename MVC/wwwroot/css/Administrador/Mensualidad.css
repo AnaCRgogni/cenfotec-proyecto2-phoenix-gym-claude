@@ -1,0 +1,163 @@
+﻿
+.﻿body {
+    background-color: #f0f0f0;
+}
+
+.bodycontainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.is-invalid {
+    border-color: red;
+}
+
+h1.display-4 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 20px;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 80%;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    padding: 20px;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#routineForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.exercise {
+    margin-bottom: 20px;
+}
+
+.btn {
+    width: auto;
+    margin: 20px 0;
+}
+
+.table-container {
+    max-width: 80%;
+    margin: auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 100px;
+}
+
+
+
+#groupBtn {
+    width: 250px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-danger-delete {
+    width: auto;
+    display: block;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+#deleteBtn {
+    width: auto;
+    display: block;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-orange {
+    background-color: #ff8000;
+    color: white;
+}
+
+    .btn-orange:hover {
+        opacity: 0.8;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+    .btn-danger:hover {
+        opacity: 0.8;
+    }
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    border-width: 3px;
+}
+
+.table td {
+    vertical-align: middle; /* Vertically center the text */
+}
+
+#trainer {
+    width: auto;
+    height: 40px;
+}
+
+#inputShare {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#createMembresia {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-group label {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    font-weight: bold;
+}

@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "ManejoDeCuentas";
+    Layout = "~/Views/Shared/_LayoutRecepcionista.cshtml";
+}
+
+@model MVC.Models.EntrenadorModel
+
+<link rel="stylesheet" href="~/css/Recepcionista/ManejoDeCuentas.css" defer />
+<script src="~/js/Pages/Recepcionista/ManejoDeCuentas.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="centered-container">
+    <div class="content">
+        <div class="text-center">
+            <h1 class="display-4">Lista de clientes y entrenadores</h1>
+        </div>
+
+        <div class="table-responsive">
+            <table id="datatable_users" class="table">
+                <caption>
+                    Tabla para buscar usuarios
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="centered">Nombre</th>
+                        <th class="centered">Cédula</th>
+                        <th class="centered">E-mail</th>
+                        <th class="centered">Tipo de Usuario</th>
+                        <th class="centered">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody_users"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="form-container">
+    <div class="text-center">
+        <h1 class="display-4">Crear usuario entrenador</h1>
+    </div>
+    <form id="formEntrenador" novalidate>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="cedula">Cédula:</label>
+                <input type="text" class="form-control full-width" id="cedula" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control full-width" id="nombre" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="apellido1">Apellido 1:</label>
+                <input type="text" class="form-control full-width" id="apellido1" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="apellido2">Apellido 2:</label>
+                <input type="text" class="form-control full-width" id="apellido2" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" class="form-control full-width" id="telefono" required pattern="\d*" />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="email">Correo:</label>
+                <input type="text" class="form-control full-width" id="email" required />
+                <div class="invalid-feedback">
+                    Usar formato: Ejemplo@email.com
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" class="form-control full-width" id="contrasena" required />
+                <div class="invalid-feedback">
+                    Debe tener al menos 8 caracteres, incluir al menos 1 letra mayúscula, 1 letra minúscula, 1 número y 1 carácter especial.
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="checkbox" class="form-check-input" id="showPassword">
+                    <label class="form-check-label" for="showPassword">Mostrar Contraseña</label>
+                </div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control full-width" id="fechaNacimiento" style="text-align:center" max="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="tipoEntrenador">Tipo de Entrenador:</label>
+                <select class="form-control full-width" id="tipoEntrenador" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="Entrenador de Piso">Entrenador de Piso</option>
+                    <option value="Entrenador Personal">Entrenador Personal</option>
+                    <option value="Ambos">Ambos</option>
+                </select>
+            </div>
+            <div class="col-md-6 form-group" id="tarifaHoraGroup" style="display: none;">
+                <label for="tarifaHoraEntrenadorPersonal">Tarifa por Hora:</label>
+                <input type="number" class="form-control full-width" id="tarifaHoraEntrenadorPersonal" step="0.1" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-submit" id="saveBtn">Crear Usuario</button>
+    </form>
+</div>

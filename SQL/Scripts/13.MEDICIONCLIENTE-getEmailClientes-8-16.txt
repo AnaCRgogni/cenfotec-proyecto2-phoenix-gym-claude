@@ -1,0 +1,32 @@
+USE [PhoenixFItness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_getEmailClientes]    Script Date: 16/08/2024 09:47:28 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_getEmailClientes]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+-- Declare a table variable to store results
+    DECLARE @CorreoClientes TABLE (
+		id INT IDENTITY(1,1), -- Adding an ID column with unique values
+        nombre NVARCHAR(25),
+		cedula NVARCHAR(25),
+        email NVARCHAR(50),
+		idMembresia INT,
+        rolUsuario NVARCHAR(25)
+    );
+
+    -- Insert data into the table variable from Clients and Membership tables
+    INSERT INTO @CorreoClientes (nombre, cedula, email, idMembresia, rolUsuario)
+    SELECT c.nombre, c.cedula, c.email, c.idMembresia, c.rolUsuario
+    FROM TUsuario c
+	WHERE c.rolUsuario = 'Cliente';
+
+    -- Select data from the table variable
+    SELECT ID, nombre, cedula, email, idMembresia, rolUsuario
+    FROM @CorreoClientes;
+END

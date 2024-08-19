@@ -1,0 +1,102 @@
+﻿body {
+    background-color: #f0f0f0;
+}
+
+h1.display-4 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #333;
+    margin-top: 20px;
+}
+
+.form-container {
+    max-width: 700px;
+    width: 100%; /* Asegura que el contenedor no exceda el máximo ancho especificado */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto; /* Centra horizontalmente dentro de su contenedor */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.btn-orange {
+    width: auto;
+    display: block;
+    margin: 20px auto 0;
+    background-color: #ff8000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-danger {
+    width: auto;
+    display: block;
+    margin: 20px auto 0;
+    background-color: #dc3545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+    .btn-orange:hover {
+        opacity: 0.8;
+    }
+    
+    
+    .btn-danger:hover {
+        opacity: 0.8;
+    }
+
+.cards-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    justify-content: center; /* Centra el contenido horizontalmente */
+    padding: 20px;
+}
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    border-width: 3px; /* Adjust this value to make the border thicker */
+}
+
+.card-img-container {
+    position: relative;
+    width: 100%; /* Ensures the container is responsive */
+    padding-top: 100%; /* Creates a square by setting the height to 100% of the width */
+    overflow: hidden;
+}
+
+    .card-img-container img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: auto;
+        height: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        max-height: 100%;
+    }

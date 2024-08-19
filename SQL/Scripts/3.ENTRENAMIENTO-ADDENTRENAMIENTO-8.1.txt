@@ -1,0 +1,22 @@
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_addEntrenamiento]    Script Date: 8/1/2024 5:52:46 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_addEntrenamiento]
+	@Nombre VARCHAR(255),
+    @IDCliente VARCHAR(50),
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insert the new record
+    INSERT INTO TEntrenamiento (Nombre, Fecha, IDCliente)
+    VALUES (@Nombre, GETDATE(),  @IDCliente);
+
+    -- Set the output parameter to the IDRutina of the newly inserted record
+    SET @ReturnValue = SCOPE_IDENTITY();
+END;

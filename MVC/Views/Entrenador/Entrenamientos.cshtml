@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Entrenamiento";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+
+<link rel="stylesheet" href="~/css/Entrenador/Entrenamientos.css" asp-append-version="true" defer />
+<script src="~/js/Pages/Entrenador/Entrenamiento.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="text-center">
+    <h1 class="display-4">Ver Entrenamientos Compartidos</h1>
+</div>
+
+<div class="table-container">
+    <div class="container m-12">
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <table id="datatable_entrenamiento" class="table">
+                    <thead>
+                        <tr>
+                            <th class="centered">Nombre</th>
+                            <th class="centered">Apellido</th>
+                            <th class="centered">Fecha</th>
+                            <th class="centered">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody_entrenamientos"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

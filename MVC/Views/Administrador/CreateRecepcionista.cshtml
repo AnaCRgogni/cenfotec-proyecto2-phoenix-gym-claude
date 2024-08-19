@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "CreateRecepcionista";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+@model MVC.Models.RecepcionistaModel
+
+<link rel="stylesheet" href="~/css/Administrador/Administrador_CreateRecepcionista.css" asp-append-version="true" />
+<script src="~/js/Pages/Administrador/Administrador_CreateRecepcionista.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="text-center">
+    <h1 class="display-4">Crear un(a) Recepcionista</h1>
+</div>
+
+<div class="form-container">
+    <form id="formRecepcionista" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="cedula">Cedula</label>
+                <input type="text" class="form-control" id="cedula" required maxlength="9" />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="apellido1">Apellido 1</label>
+                <input type="text" class="form-control" id="apellido1" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="apellido2">Apellido 2</label>
+                <input type="text" class="form-control" id="apellido2" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="email">Correo</label>
+                <input type="text" class="form-control" id="email" required />
+                <div class="invalid-feedback">
+                    Usar formato: Ejemplo@email.com
+                </div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" class="form-control" id="contrasena" required />
+                <div class="invalid-feedback">
+                    Debe tener al menos 8 caracteres, incluir al menos 1 letra mayúscula, 1 letra minúscula, 1 número y 1 carácter especial.
+                </div>
+                <input type="checkbox" id="showPassword"> Mostrar Contraseña
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fechaNacimiento" style="text-align:center" max="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="generoCliente">Género</label>
+                <select class="form-control" id="generoCliente" required>
+                    <option value=disabled selected>Seleccione su genero</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="otro">Otro</option>
+                    <option value="nodecir">Prefiero no decir</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-submit">Guardar</button>
+    </form>
+</div>

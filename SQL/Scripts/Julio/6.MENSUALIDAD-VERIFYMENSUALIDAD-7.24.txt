@@ -1,0 +1,41 @@
+USE [PhoenixFitness]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_VerifyMensualidad]    Script Date: 7/23/2024 9:06:03 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[sp_VerifyMensualidad]
+    @cedulaUsuario NVARCHAR(25),
+    @fecha DATETIME,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @fechaUltimoPago DATETIME;
+
+    SELECT TOP 1 @fechaUltimoPago = fechaPago
+    FROM dbo.TPago
+    WHERE cedulaUsuario = @cedulaUsuario
+    ORDER BY fechaPago DESC;
+
+    IF @fechaUltimoPago IS NULL
+    BEGIN
+        -- No hay pagos registrados para este usuario
+        SET @ReturnValue = -1; -- No payments found
+    END
+    ELSE
+    BEGIN
+        IF DATEDIFF(DAY, @fechaUltimoPago, @fecha) > 30
+        BEGIN
+            SET @ReturnValue = -1; -- More than 30 days since the last payment
+        END
+        ELSE
+        BEGIN
+            SET @ReturnValue = 0; -- Payment is up to date
+        END
+    END
+END;

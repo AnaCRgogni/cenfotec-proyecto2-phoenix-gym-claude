@@ -1,0 +1,180 @@
+#bannercontainer {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+    #bannercontainer img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    #bannercontainer::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%; 
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+        pointer-events: none; 
+    }
+
+#section2 {
+    background-color: #fff;
+    padding: 20px;
+    color: white;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.service-img {
+    width: 100%;
+    max-width: 400px; 
+    height: 250px;
+    object-fit: cover; 
+    border-radius: 8px; 
+}
+
+.col-md-6 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.row .col-md-6 img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover; 
+}
+
+.banner-principal {
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 100px 0;
+    font-family: 'Bungee Spice', sans-serif;
+}
+
+    .banner-principal h1 {
+        font-size: 4rem;
+        margin-bottom: 20px;
+    }
+
+    .banner-principal p {
+        font-size: 2rem;
+        font-family: Arial, sans-serif;
+    }
+
+#pTitulo {
+    font-size: 1.7rem;
+    font-family: Arial, sans-serif;
+    color: #ff8000;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+h2, h3 {
+    font-family: 'Bungee Spice', sans-serif;
+    color: #ff8000;
+    margin-bottom: 35px;
+    margin-top: 35px;
+}
+
+    h3.servicio-titulo {
+        font-size: 1.7rem;
+        color: #ff8000;
+    }
+
+p.servicio-descripcion {
+    font-family: Arial, sans-serif;
+    font-size: 1.1rem;
+    color: black;
+}
+
+p.subtitulo {
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    color: black;
+}
+
+.testimonios .carousel-inner .carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    max-width: 800px;
+    margin: auto;
+}
+
+    .testimonios .carousel-inner .carousel-item img {
+        margin-right: 20px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .testimonios .carousel-inner .carousel-item .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 10px;
+        color: white;
+        width: 60%;
+    }
+
+#testimonios-carousel {
+    width: 850px; 
+    margin: 0 auto; 
+    margin-top: 40px;
+}
+
+.contacto {
+    font-family: 'Bungee Spice', sans-serif;
+    margin-bottom: 50px;
+}
+
+    .contacto h3 {
+        font-size: 1.5rem;
+        color: #ff8000;
+    }
+
+    .contacto p {
+        font-size: 1.2rem;
+        color: black;
+    }
+
+    .contacto img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+
+.text-center h2 {
+    margin-bottom: 20px;
+}
+
+.container .row .col-md-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .container .row .col-md-3 img {
+        max-width: 150px;
+        margin-bottom: 15px;
+    }
+
+.contacto .col-md-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .contacto .col-md-6 img {
+        max-width: 80%; 
+        border-radius: 10px; 
+    }

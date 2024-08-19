@@ -1,0 +1,89 @@
+body {
+  display: flex;
+  background-color: #f0f0f0;
+  margin-bottom: 100px;
+  align-content: center;
+  flex-direction: column;
+}
+
+.text-center {
+  margin-top: 20px;
+}
+
+h1.display-4 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  width: 1020px;
+  align-content: center;
+  flex-direction: column;
+}
+
+.accordion-container {
+  display: flex;
+  overflow-x: auto; 
+  width: 100%;
+  position: relative;
+  align-items: center;
+  max-width: 100%;
+}
+
+.card-container {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+  width: auto; 
+  margin-bottom: 10px;
+}
+
+.choice {
+  flex: 0 0 300px; 
+  height: 180px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 10px;
+  border-radius: 3px;
+  background-color: #ddd;
+  color: black !important;
+  text-align: center;
+}
+
+.bg-card-primary {
+  background-color: #ff8000;
+  background: linear-gradient(to bottom, #FF8000, #FF0000);
+  border-color: #ff8000;
+}
+
+.bg-card-secondary {
+  background-color: #D72828 !important; 
+}
+
+.accordion-container::-webkit-scrollbar {
+  width: 8px; /* width of the scrollbar */
+  height: 8px; /* height of the scrollbar */
+}
+
+.accordion-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.5); /* color of the scrollbar thumb */
+  border-radius: 4px; /* roundness of the scrollbar thumb */
+}
+
+.accordion-container::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* color of the scrollbar track */
+}
+
+.form-container {
+  width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.centered {
+  text-align: center !important;
+  vertical-align: middle !important;
+}

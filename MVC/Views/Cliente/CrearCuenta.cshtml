@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Crear Cuenta";
+    Layout = "~/Views/Shared/_LayoutLandingPage.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Cliente/CrearCuenta.css" defer />
+<script src="~/js/Pages/Cliente/CrearCuenta.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+<script src="https://www.paypal.com/sdk/js?client-id=@ViewData["ClientId"]"></script>
+
+<div class="text-center">
+    <h1 class="display-4">Crear Cuenta</h1>
+</div>
+
+<div class="form-container">
+    <form id="formCliente" class="needs-validation" novalidate>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="apellido1">Apellido 1</label>
+                <input type="text" class="form-control" id="apellido1" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="apellido2">Apellido 2</label>
+                <input type="text" class="form-control" id="apellido2" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="email">Correo</label>
+                <input type="text" class="form-control" id="email" required />
+                <div class="invalid-feedback">
+                    Usar formato: Ejemplo@email.com
+                </div>
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" id="fechaNacimiento" style="text-align:center" max="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" class="form-control" id="contrasena" required />
+                <div class="invalid-feedback">
+                    Debe tener al menos 8 caracteres, incluir al menos 1 letra mayúscula, 1 letra minúscula, 1 número y 1 carácter especial.
+                </div>
+                <input type="checkbox" id="showPassword"> Mostrar Contraseña
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="generoCliente">Género</label>
+                <select class="form-control" id="generoCliente" required>
+                    <option value= disabled selected>Seleccione su genero</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="otro">Otro</option>
+                    <option value="nodecir">Prefiero no decir</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="cedula">Cedula</label>
+                <input type="number" class="form-control" id="cedula" required maxlength="9" />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="fotoIdCliente">Foto de su Cédula</label>
+                <input type="file" class="form-control" id="fotoIdCliente" accept=".png, .jpeg, .jpg" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label for="fotoPerfilCliente">Foto de Perfil</label>
+                <input type="file" class="form-control" id="fotoPerfilCliente" accept=".png, .jpeg, .jpg" required />
+            </div>
+        </div>
+        <div class="row" id="discountForm">   
+            <div class="col-md-6 form-group">
+                <label for="fotoPerfilCliente">Descuento</label>
+                <input type="text" class="form-control" id="codigo" required placeholder="Codigo Descuento" />
+                <div class="invalid-feedback" id="discountFeedback"></div>
+                <div class="valid-feedback" id="discountFeedbackValid"></div>
+            </div>
+            <button type="button" class="btn btn-orange" id="verifyDiscountBtn">Verificar</button>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <label>Selecciona tu membresía:</label>
+                <div id="membresiaOptions" class="mt-2"></div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-submit" id="LogOutBtn">Enviar</button>
+    </form>
+</div>

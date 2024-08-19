@@ -1,0 +1,133 @@
+USE [PhoenixFitness]
+
+drop table TEjercicio
+
+CREATE TABLE TEjercicio (
+    EjercicioID INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre VARCHAR(255),
+    Descripcion VARCHAR(1000),
+    Imagen VARCHAR(255),
+    MaquinaID INT
+);
+
+CREATE PROCEDURE [dbo].[sp_addEjercicio]
+    @Nombre VARCHAR(255),
+    @Descripcion TEXT,
+    @Imagen VARCHAR(255),
+    @MaquinaID INT
+AS
+BEGIN
+    -- Insertar un nuevo registro en la tabla TEjercicio
+    INSERT INTO TEjercicio (Nombre, Descripcion, Imagen, MaquinaID)
+    VALUES (@Nombre, @Descripcion, @Imagen, @MaquinaID);
+END
+
+CREATE PROCEDURE dbo.GetEjercicioById
+    @EjercicioID INT
+AS
+BEGIN
+    -- Declare a table variable to hold the results
+    DECLARE @Result TABLE (
+        Name VARCHAR(255),
+        Description VARCHAR(1000),
+        Picturelink VARCHAR(255),
+        MaquinaName VARCHAR(255),
+        MaquinaDescription VARCHAR(1000),
+        MaquinaPicturelink VARCHAR(255)
+    );
+    
+    -- Insert the details of Ejercicio and its associated Maquina into the table variable
+    INSERT INTO @Result
+    SELECT 
+        e.Nombre AS Name,
+        e.Descripcion AS Description,
+        e.Imagen AS Picturelink,
+        m.Name AS MaquinaName,
+        m.Description AS MaquinaDescription,
+        m.PictureLink AS MaquinaPicturelink
+    FROM TEjercicio e
+    LEFT JOIN TMaquina m ON e.MaquinaID = m.Id
+    WHERE e.EjercicioID = @EjercicioID;
+
+    -- Return the result
+    SELECT * FROM @Result;
+END;
+
+
+CREATE PROCEDURE dbo.sp_getEjercicios
+AS
+BEGIN
+    SELECT
+        e.EjercicioID,
+        e.Nombre AS EjercicioName,
+        e.Descripcion AS EjercicioDescription,
+        e.Imagen AS EjercicioImage,
+        m.Id AS MaquinaID,
+        m.Name AS MaquinaName,
+        m.Description AS MaquinaDescription,
+        m.PictureLink AS MaquinaPictureLink
+    FROM
+        TEjercicio e
+    LEFT JOIN
+        TMaquina m
+    ON
+        e.MaquinaID = m.Id;
+END;
+
+CREATE TABLE TRutina (
+    IDRutina INT IDENTITY(1,1) PRIMARY KEY,
+	Nombre VARCHAR(255),
+    Fecha DATE NOT NULL,
+    IDUsuario VARCHAR(50) NOT NULL,
+    IDCliente VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE TSets (
+    IDSet INT IDENTITY(1,1) PRIMARY KEY,
+    IDRutina INT NOT NULL,
+    IDEjercicios INT NOT NULL,
+    Sets DECIMAL(10, 2) NOT NULL,
+    Peso DECIMAL(10, 2) NOT NULL,
+    Tiempo DECIMAL(10, 2) NOT NULL,
+    --FOREIGN KEY (IDRutina) REFERENCES TRutina(IDRutina),
+    --FOREIGN KEY (IDEjercicios) REFERENCES TEjercicios(IDEjercicios)
+);
+
+DROP PROCEDURE IF EXISTS dbo.sp_addRutina;
+
+
+CREATE PROCEDURE dbo.sp_addRutina
+	@Nombre VARCHAR(255),
+    @IDUsuario VARCHAR(50),
+    @IDCliente VARCHAR(50),
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Insert the new record
+    INSERT INTO TRutina (Nombre, Fecha, IDUsuario, IDCliente)
+    VALUES (@Nombre, GETDATE(), @IDUsuario, @IDCliente);
+
+    -- Set the output parameter to the IDRutina of the newly inserted record
+    SET @ReturnValue = SCOPE_IDENTITY();
+END;
+
+CREATE PROCEDURE dbo.sp_addSet
+    @IDRutina INT,
+    @IDEjercicios INT,
+    @Sets DECIMAL(10, 2),
+    @Peso DECIMAL(10, 2),
+    @Tiempo DECIMAL(10, 2)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO TSets (IDRutina, IDEjercicios, Sets, Peso, Tiempo)
+    VALUES (@IDRutina, @IDEjercicios, @Sets, @Peso, @Tiempo);
+
+    -- Optionally, you can return the ID of the newly inserted record
+    --SELECT SCOPE_IDENTITY() AS IDSet;
+END;
+
+

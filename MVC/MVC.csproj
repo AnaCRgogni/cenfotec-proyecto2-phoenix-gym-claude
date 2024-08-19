@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>104591ca-e6e0-4266-98aa-0eaef0f6c785</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\js\Pages\Cliente\Entrenamiento.js" />
+    <Content Remove="wwwroot\js\Pages\Entrenador\Entrenamiento.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\Pages\Cliente\Entrenamiento.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.7" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
+    <PackageReference Include="bootstrap" Version="5.3.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\Images\logoblanco.png" />
+    <None Include="wwwroot\Images\logotransparente.png" />
+    <None Include="wwwroot\js\Pages\Cliente\Entrenamiento.js" />
+    <None Include="wwwroot\js\Pages\Entrenador\Entrenamiento.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.Development.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
+    <ProjectReference Include="..\DTO\DTO.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\Calendario\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="Views\Administrador\CreateEntrenador.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+	<Content Update="wwwroot\js\Pages\Administrador\Usuarios.js" />
+    <Content Update="Views\Administrador\Rutinas.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\Pages\Recepcionista\Pagos.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

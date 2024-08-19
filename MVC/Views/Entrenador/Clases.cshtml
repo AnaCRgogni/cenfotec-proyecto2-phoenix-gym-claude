@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Clases";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Recepcionista/Clientes.css">
+<script src="~/js/Pages/Entrenador/Clases.js" defer></script>
+
+<div class="centered-container">
+    <div class="content">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="text-center">
+                <h1 class="display-4">Mis Clases</h1>
+            </div>
+
+            <table id="datatable_users" class="table">
+                <caption>
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="centered">Fecha</th>
+                        <th class="centered">Nombre</th>
+                        <th class="centered">Cupos Disponibles</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody_users"></tbody>
+            </table>
+        </div>
+    </div>
+</div>

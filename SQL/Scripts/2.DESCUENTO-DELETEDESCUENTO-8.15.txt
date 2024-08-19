@@ -1,0 +1,17 @@
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_DeleteDescuento]    Script Date: 8/15/2024 2:15:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE [dbo].[sp_DeleteDescuento]
+    @idDescuento INT
+AS
+BEGIN
+    -- Eliminar registros de TEntrenamientoCompartido que coincidan con idEntrenamiento
+    DELETE FROM [dbo].[TDescuento]
+    WHERE [idDescuento] = @idDescuento;
+
+END

@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Ver Clientes";
+    Layout = "~/Views/Shared/_LayoutRecepcionista.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Recepcionista/Clientes.css">
+<script src="~/js/Pages/Recepcionista/Clientes.js" defer></script>
+
+<div class="centered-container">
+    <div class="content">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="text-center">
+                <h1 class="display-4">Activación de cuentas</h1>
+            </div>
+
+            <table id="datatable_users" class="table">
+                <caption>
+                    Seleccione una cuenta para activar. Para subir un comprobante seleccione el boton de perfil. Si desea ver un comprobante para activar la cuenta del cliente presione el boton de comprobantes (boton rojo).
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="centered">Cédula</th>
+                        <th class="centered">Nombre</th>
+                        <th class="centered">E-mail</th>
+                        <th class="centered">Mensualidad</th>
+                        <th class="centered">Estado</th>
+                        <th class="centered">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody_users"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+

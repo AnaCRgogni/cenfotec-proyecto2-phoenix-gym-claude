@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Equipo";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Entrenador/Entrenador_Equipo.css" asp-append-version="true" />
+<script src="~/js/Pages/Equipo/AddEquipo.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+
+<div class="text-center">
+    <h1 class="display-4">Agregar un Equipo</h1>
+</div>
+
+<div class="form-container">
+    <form id="formEquipo" class="needs-validation" novalidate>
+        <div class="form-group">
+            <label for="MachineName" class="form-label">Nombre de la máquina</label>
+            <input type="text" class="form-control" id="machineName" required>
+        </div>
+        <div class="form-group">
+            <label for="Number" class="form-label">Número de la máquina</label>
+            <input type="number" class="form-control" id="machineNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="Description" class="form-label">Descripción</label>
+            <textarea type="text" class="form-control" id="description" required oninput="adjustTextareaHeight(this)"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="Foto de Maquina">Foto de Máquina</label>
+            <input type="file" class="form-control" id="piclink" accept=".png, .jpeg, .jpg" required />
+        </div>
+
+        <button type="submit" class="btn btn-submit" id="saveBtn">Enviar</button>
+    </form>
+</div>
+
+
+<div class="text-center">
+    <h1 class="display-4">Equipos disponibles</h1>
+</div>
+
+<div class = "cards-container">
+    <div class="row row-cols-1 row-cols-md-3 g-4" id="cards-container">
+        <!-- Cards will be populated here -->
+    </div>
+</div>

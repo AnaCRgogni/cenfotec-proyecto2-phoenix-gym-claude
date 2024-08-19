@@ -1,0 +1,24 @@
+CREATE PROCEDURE [dbo].[sp_addDescuento]
+    @codigo NVARCHAR(50),
+    @porcentaje FLOAT,
+    @estado BIT,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verificar si el código ya existe
+    IF EXISTS (SELECT 1 FROM [dbo].[TDescuento] WHERE [codigo] = @codigo)
+    BEGIN
+        SET @ReturnValue = -1; -- Código ya existe, devuelve -1
+        RETURN; -- Salir del procedimiento
+    END
+
+    -- Insertar un nuevo registro en TDescuento
+    INSERT INTO [dbo].[TDescuento] ([codigo], [porcentaje], [estado])
+    VALUES (@codigo, @porcentaje, @estado);
+
+    -- Devolver el ID del nuevo registro insertado
+    SET @ReturnValue = SCOPE_IDENTITY();
+END;
+GO

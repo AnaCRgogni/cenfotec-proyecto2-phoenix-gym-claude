@@ -1,0 +1,71 @@
+ALTER PROCEDURE [dbo].[sp_getMedicionByCliente]
+    @idCliente VARCHAR(25)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT *
+    FROM TMedicion
+    WHERE idCliente = @idCliente
+	order by fecha desc;
+END
+
+-------------------------------------------------------------
+
+exec dbo.sp_addMedicion @fecha= '2024-08-08', @peso=80, @altura=1.65,@imc = 29, @igc=26,@idUsuario='999999999', @idCliente='800940399';
+
+-------------------------------------------------------------
+
+USE [PhoenixFitness]
+GO
+
+/****** Object:  Table [dbo].[TMedicion]    Script Date: 8/8/2024 10:22:00 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TMedicion](
+	[idMedicion] [int] IDENTITY(1,1) NOT NULL,
+	[fecha] [datetime] NOT NULL,
+	[Peso] [decimal](5, 2) NOT NULL,
+	[Altura] [decimal](5, 2) NOT NULL,
+	[imc] [int] NOT NULL,
+	[igc] [int] NOT NULL,
+	[idUsuario] [varchar](25) NOT NULL,
+	[idCliente] [varchar](25) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idMedicion] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+-------------------------------------------------------------
+
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_addMedicion]    Script Date: 8/8/2024 10:18:42 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[sp_addMedicion]
+    @fecha DATETIME,
+    @peso DECIMAL(5, 2),
+    @altura DECIMAL(5, 2),
+	@imc INT,
+	@igc INT,
+    @idUsuario VARCHAR(25),
+    @idCliente VARCHAR(25)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO TMedicion (fecha, Peso, Altura, imc,igc,idUsuario, idCliente)
+    VALUES (@fecha, @peso, @altura,@imc,@igc, @idUsuario, @idCliente);
+
+    SELECT SCOPE_IDENTITY() AS idCita; -- Retorna el ID generado automáticamente
+END;

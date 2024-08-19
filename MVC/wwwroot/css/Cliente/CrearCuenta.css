@@ -1,0 +1,198 @@
+﻿.text-center {
+    margin-top: 20px;
+}
+
+h1.display-4 {
+    font-weight: bold;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.form-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 5px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        display: block;
+        text-align: center;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+
+.button-group .btn {
+    display: inline-block;
+    margin-right: 10px; 
+}
+
+#updateBtn {
+    width: auto;
+    display: block;
+    margin: 20px auto 0;
+    background-color: #ff8000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+    #updateBtn:hover {
+        background-color: #e67300;
+        color: white;
+    }
+
+#LogOutBtn {
+    width: auto;
+    display: block;
+    margin: 20px auto 0;
+    background-color: #D72828;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+    #LogOutBtn:hover {
+        background-color: #661515;
+        color: white;
+    }
+
+#saveBtn {
+    width: auto;
+    display: block;
+    margin: 20px auto 0;
+    background-color: #D72828;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+    #saveBtn:hover {
+        background-color: #661515;
+        color: white;
+    }
+
+.was-validated .form-control:invalid, .form-control.is-invalid {
+    border-width: 3px;
+}
+
+.titulo-cuenta {
+    text-align: center;
+    font-weight: bold;
+}
+
+.cuenta-bancaria {
+    list-style-type: disc;
+    padding-left: 0;
+}
+
+    .cuenta-bancaria li {
+        list-style-position: inside;
+        font-weight: normal;
+    }
+
+.form-check {
+    font-weight: normal;
+}
+
+#passBtn {
+    width: auto;
+    display: block;
+    margin: 20px auto 0;
+    background-color: #ff8000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+    #passBtn:hover {
+        background-color: #e67300;
+        color: white;
+    }
+.is-invalid .accordion-button {
+    border-color: #dc3545; /* Rojo */
+    background-color: #f8d7da; /* Fondo rojo claro */
+    color: #721c24; /* Texto rojo oscuro */
+}
+
+.is-valid .accordion-button {
+    border-color: #28a745; /* Verde */
+    background-color: #d4edda; /* Fondo verde claro */
+    color: #155724; /* Texto verde oscuro */
+}
+
+#paypalAccordionValid {
+    background-color: #d4edda;
+}
+
+#paypalAccordionInvalid {
+    background-color: #921A40;
+}
+
+#collapseThree {
+    border-color: #dc3545;
+}
+
+.accordion-buttonValid {
+    border-color: #d4edda;
+}
+
+.accordion-buttonInvalid {
+    border-color: #dc3545;
+}
+
+#invalid {
+    background-color: #dc3545;
+    color: white;
+}
+
+#valid {
+    background-color: #d4edda;
+}
+.btn-orange {
+    background-color: #ff8000;
+    color: white;
+}
+
+    .btn-orange:hover {
+        opacity: 0.8;
+    }
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+    .btn-danger:hover {
+        opacity: 0.8;
+    }
+
+#verifyDiscountBtn {
+    width:100px;
+    height:50px;
+}
+
+#discountForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.accordion-body {
+    text-align: center; /* Centra el texto de los párrafos */
+}
+
+#paypal-button-container {
+    display: flex;
+    justify-content: center; /* Centra el botón de PayPal */
+}

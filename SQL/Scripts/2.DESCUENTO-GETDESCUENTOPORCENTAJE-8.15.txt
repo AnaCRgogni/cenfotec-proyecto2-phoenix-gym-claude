@@ -1,0 +1,43 @@
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_getDescuentoPorcentaje]    Script Date: 8/15/2024 10:00:00 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+alter PROCEDURE [dbo].[sp_getDescuentoPorcentaje]
+    @codigo NVARCHAR(50),
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verificar si el código existe
+    IF NOT EXISTS (SELECT 1 FROM TDescuento WHERE codigo = @codigo)
+    BEGIN
+        -- Si el código no existe, retorna -1
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Verificar si el código existe pero no está activo
+    IF EXISTS (SELECT 1 FROM TDescuento WHERE codigo = @codigo AND estado = 0)
+    BEGIN
+        -- Si el código existe pero no está activo, retorna -2
+        SET @ReturnValue = -2;
+        RETURN;
+    END
+
+    -- Obtener el idDescuento y el porcentaje si el código está activo
+    DECLARE @idDescuento INT;
+    DECLARE @porcentaje FLOAT;
+
+    SELECT 
+        @idDescuento = idDescuento,
+        @porcentaje = porcentaje
+    FROM TDescuento
+    WHERE codigo = @codigo AND estado = 1;
+
+    -- Retornar el idDescuento
+    SET @ReturnValue = @idDescuento;
+END;

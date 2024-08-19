@@ -1,0 +1,50 @@
+Actualiza el query para crear un entrenador, se crea con el rol 
+de Entrenador y ya activada la cuenta
+
+USE [PhoenixFitness]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the new or updated stored procedure
+ALTER PROCEDURE [dbo].[sp_addEntrenadorxRecepcionista]
+	@cedula NVARCHAR(25),	
+	@rolUsuario NVARCHAR(25),
+	@nombre NVARCHAR(25),
+	@apellido1 NVARCHAR(25),
+	@apellido2 NVARCHAR(25),
+	@email NVARCHAR(25),
+	@contrasena NVARCHAR(100),
+	@fechaNacimiento DATE,
+	@telefono NVARCHAR(25),
+	@tipoEntrenador NVARCHAR(25),
+	@tarifaHoraEntrenadorPersonal Float,
+	@estado bit,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	 -- Check if email or cedula already exists
+    IF EXISTS (SELECT 1 FROM TUsuario WHERE email = @email)
+    BEGIN
+        SET @ReturnValue = -1; -- Email already exists, set return value to -1
+        RETURN; -- Exit the procedure
+    END
+
+    IF EXISTS (SELECT 1 FROM TUsuario WHERE cedula = @cedula)
+    BEGIN
+        SET @ReturnValue = -2; -- Cedula already exists, set return value to -2
+        RETURN; -- Exit the procedure
+    END
+
+
+    INSERT INTO TUsuario (cedula, rolUsuario, nombre, apellido1,apellido2, email, contrasena, fechaNacimiento, telefono, tipoEntrenador, tarifaHoraEntrenadorPersonal, estado)
+    VALUES (@cedula, 'Entrenador', @nombre, @apellido1, @apellido2, @email,@contrasena, @fechaNacimiento, @telefono,@tipoEntrenador,@tarifaHoraEntrenadorPersonal, 1);
+
+SET @ReturnValue = 0; -- Successfully inserted, set return value to 0
+
+END;

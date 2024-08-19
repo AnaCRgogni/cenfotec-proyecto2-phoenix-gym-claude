@@ -1,0 +1,51 @@
+USE [PhoenixFitnessFinal]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_deleteCedCliente]    Script Date: 11/08/2024 05:29:56 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_deleteCedCliente] (@Cedula NVARCHAR(25))
+AS
+BEGIN
+    -- Declare a variable to store UserID
+    DECLARE @userIdToDelete INT;
+
+	    IF EXISTS (SELECT 1 FROM TSalt WHERE cedulaUsuario = @Cedula)
+    BEGIN
+        DELETE FROM TSalt WHERE cedulaUsuario = @Cedula;
+        SELECT ('Registro de TSalt eliminado exitosamente') AS Message;
+    END
+
+    -- Find the UserID corresponding to the provided Cedula in TUsuario
+    SELECT @userIdToDelete = idUsuario
+    FROM TUsuario
+    WHERE Cedula = @Cedula;
+
+    -- Check if the UserID exists
+    IF @userIdToDelete IS NOT NULL
+    BEGIN
+        -- Delete related records from TCitasMedicion
+        DELETE FROM TCitasMedicion WHERE cedula = @Cedula;
+
+        -- Delete related records from THorarioEntrenador
+        DELETE FROM THorarioEntrenador WHERE cedula = @Cedula;
+
+        -- Delete related records from TPago
+        DELETE FROM TPago WHERE cedulaUsuario = @userIdToDelete;
+
+        -- Finally, delete the user from TUsuario
+        DELETE FROM TUsuario WHERE idUsuario = @userIdToDelete;
+
+        -- Also, delete from TSalt if applicable
+        DELETE FROM TSalt WHERE cedulaUsuario = @Cedula;
+
+        -- Confirm the deletion
+        SELECT ('Usuario y datos relacionados eliminados exitosamente') AS Message;
+    END
+    ELSE
+    BEGIN
+        -- UserID not found
+        SELECT ('Usuario no encontrado') AS Message;
+    END
+END;

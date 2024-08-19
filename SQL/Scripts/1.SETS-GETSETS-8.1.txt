@@ -1,0 +1,32 @@
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_getSets]    Script Date: 8/1/2024 11:10:21 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[sp_getSets]
+    @IDRutina INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT
+        s.IDRutina,
+        s.Sets,
+        s.Peso,
+        s.Tiempo,
+		s.IDEjercicios,
+        e.Nombre AS Nombre,
+        e.Descripcion AS Descripcion,
+        e.Imagen AS Imagen,
+        m.Name AS Equipo
+    FROM
+        TSets s
+    INNER JOIN
+        TEjercicio e ON s.IDEjercicios = e.EjercicioID
+    LEFT JOIN
+        TMaquina m ON e.MaquinaID = m.Id
+    WHERE
+        s.IDRutina = @IDRutina;
+END;

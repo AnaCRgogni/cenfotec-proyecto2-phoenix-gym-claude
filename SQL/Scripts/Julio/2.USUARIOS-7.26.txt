@@ -1,0 +1,108 @@
+USUARIOS:
+
+salt:
+
+salt:
+
+[
+  "nW8BgwAvCa4wSYzYAIQsnw==", //salt
+  "b+b68sKnqDxg0lGRFJimYRb4i9/KuwWLDzlPF/XNsWA=" //contra
+]
+
+contraseña: Password1!
+
+
+Admin:
+
+USE [PhoenixFitness]
+GO
+
+INSERT INTO [dbo].[TUsuario] (
+    cedula, 
+    rolUsuario, 
+    nombre, 
+    apellido1, 
+    apellido2, 
+    email, 
+    contrasena, 
+	telefono,
+    estado
+)
+VALUES (
+    '777777777',               -- Reemplaza con la cédula correspondiente
+    'Administrador',            -- Reemplaza con el rol del usuario
+    'Admin',                     -- Reemplaza con el nombre
+    'Perez',                    -- Reemplaza con el primer apellido
+    'Gonzalez',                 -- Reemplaza con el segundo apellido
+    'admin@example.com',   -- Reemplaza con el email
+    'b+b68sKnqDxg0lGRFJimYRb4i9/KuwWLDzlPF/XNsWA=',  -- Contraseña encriptada
+	'123456789',
+    1                           -- Estado activo
+);
+
+
+
+
+
+recepcionista: 
+
+USE [PhoenixFitness]
+GO
+
+INSERT INTO [dbo].[TUsuario] (
+    cedula, 
+    rolUsuario, 
+    nombre, 
+    apellido1, 
+    apellido2, 
+    email, 
+    contrasena, 
+	telefono,
+    estado
+)
+VALUES (
+    '888888888',               -- Reemplaza con la cédula correspondiente
+    'Recepcionista',            -- Reemplaza con el rol del usuario
+    'Recepcionista',                     -- Reemplaza con el nombre
+    'Lopez',                    -- Reemplaza con el primer apellido
+    'Garcia',                 -- Reemplaza con el segundo apellido
+    'recep@example.com',   -- Reemplaza con el email
+    'b+b68sKnqDxg0lGRFJimYRb4i9/KuwWLDzlPF/XNsWA=',  -- Contraseña encriptada
+	'123456789',
+    1                           -- Estado activo
+);
+
+entrenador: 
+
+USE [PhoenixFitness]
+GO
+
+INSERT INTO [dbo].[TUsuario] (
+    cedula, 
+    rolUsuario, 
+    nombre, 
+    apellido1, 
+    apellido2, 
+    email, 
+    contrasena, 
+	telefono,
+	fechaNacimiento,
+	tipoEntrenador,
+    estado
+)
+VALUES (
+    '999999999',               -- Reemplaza con la cédula correspondiente
+    'Entrenador',            -- Reemplaza con el rol del usuario
+    'Entrenador',                     -- Reemplaza con el nombre
+    'Quiros',                    -- Reemplaza con el primer apellido
+    'Barrantes',                 -- Reemplaza con el segundo apellido
+    'entrenador@example.com',   -- Reemplaza con el email
+    'b+b68sKnqDxg0lGRFJimYRb4i9/KuwWLDzlPF/XNsWA=',  -- Contraseña encriptada
+	'123456789',
+	'2024-07-25',
+	'Entrenador de Piso',
+    1                           -- Estado activo
+);
+
+
+

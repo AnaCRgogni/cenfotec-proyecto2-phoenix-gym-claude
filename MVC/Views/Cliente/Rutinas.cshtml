@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Rutinas";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Entrenador/Entrenador_Rutinas.css" asp-append-version="true" />
+<script src="~/js/Pages/Cliente/VerRutinas.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container">
+    <div class="table-container">
+        <h1 class="display-12">Lista de rutinas</h1>
+        <div class="container m-12">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <table id="datatable_rutinas" class="table">
+                        <caption>
+                            Tabla para ver rutinas
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th class="centered">Id</th>
+                                <th class="centered">Nombre</th>
+                                <th class="centered">Fecha</th>
+                                <th class="centered">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody_rutinas"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

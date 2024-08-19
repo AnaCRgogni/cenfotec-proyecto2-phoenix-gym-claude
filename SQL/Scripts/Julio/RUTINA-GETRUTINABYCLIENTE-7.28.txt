@@ -1,0 +1,18 @@
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_getRutinasByCliente]    Script Date: 8/2/2024 9:10:55 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[sp_getRutinasByCliente]
+    @IDCliente varchar (50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT IDRutina,Nombre,Fecha
+	from TRutina
+	where IDCliente = @IDCliente
+END;
+

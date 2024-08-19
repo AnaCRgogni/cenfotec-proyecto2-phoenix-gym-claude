@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Mi Cuenta";
+    Layout = "~/Views/Shared/_LayoutRecepcionista.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Cliente/CrearCuenta.css" defer />
+<script src="~/js/Pages/Recepcionista/VerCuenta.js" defer></script>
+
+<div class="text-center">
+    <h1 class="display-4">Mi Cuenta</h1>
+</div>
+
+<div class="form-container">
+
+    <form id="formCliente" class="needs-validation" novalidate>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" required disabled />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="apellido1">Apellido 1</label>
+                <input type="text" class="form-control" id="apellido1" required disabled />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="apellido2">Apellido 2</label>
+                <input type="text" class="form-control" id="apellido2" required disabled />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="email">Correo</label>
+                <input type="text" class="form-control" id="email" required disabled />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" id="telefono" required disabled />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="cedula">Cédula</label>
+                <input type="number" class="form-control" id="cedula" required disabled />
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-submit" id="LogOutBtn">Cerrar Sesión</button>
+
+    </form>
+
+</div>

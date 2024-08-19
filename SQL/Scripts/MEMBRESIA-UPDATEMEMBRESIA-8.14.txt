@@ -1,0 +1,29 @@
+CREATE PROCEDURE [dbo].[sp_updateMembresia2]
+    @idMembresia INT,
+    @tipo NVARCHAR(50),
+    @mensualidad FLOAT,
+    @matricula FLOAT,
+    @ReturnValue INT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verificar si la membresía existe
+    IF NOT EXISTS (SELECT 1 FROM TMembresia WHERE idMembresia = @idMembresia)
+    BEGIN
+        SET @ReturnValue = -1; -- La membresía no existe, valor de retorno -1
+        RETURN; -- Salir del procedimiento
+    END
+
+    -- Actualizar la tabla TMembresia
+    UPDATE TMembresia
+    SET 
+        tipo = @tipo,
+        mensualidad = @mensualidad,
+        matricula = @matricula
+    WHERE
+        idMembresia = @idMembresia;
+
+    SET @ReturnValue = 0; -- Actualización exitosa, valor de retorno 0
+END;
+GO

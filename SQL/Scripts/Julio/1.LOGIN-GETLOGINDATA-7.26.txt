@@ -1,0 +1,36 @@
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_getLogInData]    Script Date: 7/25/2024 7:28:20 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER PROCEDURE [dbo].[sp_getLogInData]
+    @emailUsuario nvarchar(25)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Obtén la cédula usando el correo electrónico
+    DECLARE @cedula nvarchar(25);
+    
+    SELECT @cedula = [cedula]
+    FROM [dbo].[TUsuario]
+    WHERE [email] = @emailUsuario;
+    
+    -- Asegúrate de que se encontró una cédula
+    IF @cedula IS NOT NULL
+    BEGIN
+        -- Obtén la información de la sal usando la cédula
+        SELECT s.[salt], u.[cedula], u.[email], u.[rolUsuario], u.[contrasena], u.[estado]
+        FROM [dbo].[TSalt] s
+        INNER JOIN [dbo].[TUsuario] u ON s.[cedulaUsuario] = u.[cedula]
+        WHERE s.[cedulaUsuario] = @cedula;
+    END
+    ELSE
+    BEGIN
+        -- No retornar nada si no se encuentra el usuario
+        RETURN;
+    END
+END

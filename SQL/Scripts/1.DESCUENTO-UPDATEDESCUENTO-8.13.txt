@@ -1,0 +1,29 @@
+Create PROCEDURE [dbo].[sp_updateDescuento]
+    @idDescuento INT,
+    @codigo NVARCHAR(50),
+    @porcentaje INT,
+    @estado BIT,
+    @ReturnValue FLOAT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Verificar si el código ya existe en otro registro
+    IF EXISTS (SELECT 1 FROM TDescuento WHERE codigo = @codigo AND idDescuento != @idDescuento)
+    BEGIN
+        -- Si el código ya existe, retorna -1
+        SET @ReturnValue = -1;
+        RETURN;
+    END
+
+    -- Actualizar los datos en la tabla
+    UPDATE TDescuento
+    SET 
+        codigo = @codigo,
+        porcentaje = @porcentaje,
+        estado = @estado
+    WHERE idDescuento = @idDescuento;
+
+    -- Si la actualización fue exitosa, devolver el porcentaje/100.0
+    SET @ReturnValue = 0;
+END;

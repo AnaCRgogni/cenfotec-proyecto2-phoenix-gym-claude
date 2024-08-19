@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Crear Cuenta";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Cliente/Pago.css" defer />
+<script src="~/js/Pages/Cliente/Pago.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="centered-container">
+    <div class="content">
+        <div class="text-center">
+            <h1 class="display-4">Historial de Pagos</h1>
+        </div>
+        <div class="table-responsive">
+            <table id="datatable_pagos" class="table">
+                <caption>
+                    Historial de Pagos
+                </caption>
+                <thead>
+                    <tr>
+                        <th class="centered">Comprobante</th>
+                        <th class="centered">Fecha</th>
+                        <th class="centered">Estado del Pago</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody_pagos"></tbody>
+            </table>
+            <button id="uploadComprobanteBtn" class="btn btn-primary justify-content-center text-center">Subir Nuevo Comprobante</button>
+        </div>
+    </div>
+</div>
+
+

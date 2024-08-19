@@ -1,0 +1,38 @@
+USE [PhoenixFitness]
+GO
+
+/** Object:  Table [dbo].[TPago]    Script Date: 7/23/2024 2:38:49 PM **/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TPago](
+	[idPago] [int] IDENTITY(1,1) NOT NULL,
+	[fechaPago] [date] NOT NULL,
+	[metodoPago] [nvarchar](50) NOT NULL,
+	[comprobante] [nvarchar](150) NOT NULL,
+	[estado][bit],
+	[cedulaUsuario] [nvarchar](25) NOT NULL,
+	[idMembresia] [int] NOT NULL,
+ CONSTRAINT [PK_TPago] PRIMARY KEY CLUSTERED 
+(
+	[idPago] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[TPago]  WITH CHECK ADD  CONSTRAINT [FK_TPago_TUsuario] FOREIGN KEY([cedulaUsuario])
+REFERENCES [dbo].[TUsuario] ([cedula])
+GO
+
+ALTER TABLE [dbo].[TPago] CHECK CONSTRAINT [FK_TPago_TUsuario]
+GO
+
+ALTER TABLE [dbo].[TPago]  WITH CHECK ADD  CONSTRAINT [FK_TPago_TMemberesia] FOREIGN KEY([idMembresia])
+REFERENCES [dbo].[TMembresia] ([idMembresia])
+GO
+
+ALTER TABLE [dbo].[TPago] CHECK CONSTRAINT [FK_TPago_TMemberesia]
+GO

@@ -1,0 +1,25 @@
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_addPago]    Script Date: 8/13/2024 2:20:50 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+alter  PROCEDURE [dbo].[sp_addPago]
+(
+    @fechaPago DATE,
+    @metodoPago NVARCHAR(50),
+    @comprobante NVARCHAR(150),
+    @estado BIT,
+    @cedulaUsuario NVARCHAR(25),
+	@total FLOAT,
+    @idMembresia INT
+
+)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    INSERT INTO [dbo].[TPago] (fechaPago, metodoPago, comprobante, estado, cedulaUsuario, total, idMembresia)
+    VALUES (@fechaPago, @metodoPago, @comprobante, @estado, @cedulaUsuario,@total, @idMembresia);
+END

@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Rutinas";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+@model MVC.Models.ClienteModel
+
+<link rel="stylesheet" href="~/css/Entrenador/Entrenador_Rutinas.css" asp-append-version="true" />
+<script src="~/js/Pages/Entrenador/Entrenador_Rutinas.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <div class="text-center">
+        <h1 class="display-4">Crear Rutinas</h1>
+    </div>
+
+    <div class="form-container">
+        <form id="routineForm" asp-action="SaveRoutine" method="post"  novalidate>
+            <div class="form-group">
+                <label for="routine-name">Nombre de la Rutina</label>
+                <input type="text" class="form-control" id="routine-name" name="RoutineName" required placeholder="Nombre de la Rutina..." />
+            </div>
+            <div id="exercises-container">
+                <div class="exercise" id="exercise-template">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="exercise-name">Ejercicio</label>
+                            <select class="form-control ejercicio-name" name="Nombre" id="ejercicio-name" required>
+                                <!-- Options will be populated here -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="sets">Sets</label>
+                                <input type="number" class="form-control num-sets" id="sets" name="Sets" required min="1" placeholder="Sets" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="weight">Peso (kg)</label>
+                                <input type="number" class="form-control peso" id="peso" name="Weight" required min="0" step="0.1" placeholder="Peso" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="time">Tiempo (min)</label>
+                                <input type="number" class="form-control tiempo" id="tiempo" name="Time" required min="0" step="0.1" placeholder="Tiempo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="clientId">Cedula Cliente</label>
+                    <input type="number" id="client-id" class="form-control" required min="0" step="1" placeholder="Cedula Cliente"/>
+                </div>
+            </div>
+            <button type="button" class="btn btn-orange" onclick="addExercise()">Agregar Ejercicio</button>
+            <button type="submit" class="btn btn-danger">Guardar Rutina</button>
+        </form>
+    </div>
+
+    <div class="text-center">
+        <h1 class="display-4">Lista de Rutinas</h1>
+    </div>
+
+    <div class="table-container">
+        
+        <div class="container m-12">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <table id="datatable_rutinas" class="table">
+                        <caption>
+                            Tabla para ver rutinas
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th class="centered">Nombre</th>
+                                <th class="centered">Fecha</th>
+                                <th class="centered">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody_rutinas"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+

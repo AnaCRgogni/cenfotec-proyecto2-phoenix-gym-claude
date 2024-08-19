@@ -1,0 +1,201 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.container-fluid {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.content-wrapper {
+    flex: 1;
+    overflow: auto;
+}
+
+.footer {
+    background-color: #333333;
+    color: #ffffff;
+    padding: 15px 0;
+    width: 100%;
+    flex-shrink: 0;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.header {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.navbar {
+    background-color: #2d2d2d;
+    margin: 0;
+    padding: 0;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.logo-container {
+    margin-right: 10px;
+    margin-left: 5px;
+    animation: fadeInDrop 2s ease-in-out forwards;
+}
+
+.logo-img {
+    width: 65px;
+    height: auto;
+}
+
+.gym-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: 'Bungee Spice';
+    margin-left: 7px;
+}
+
+.gym-word {
+    display: block;
+    font-size: 2rem;
+    font-weight: 400;
+    color: #ff8000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    margin: 3px 0 0 7px;
+    animation: fadeInDrop 2s ease-in-out forwards;
+}
+
+/* Animacion de gym word y logo */
+@keyframes fadeInDrop {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 11px;
+}
+
+    .navbar-nav .nav-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 20px;
+    }
+
+.navbar > :last-child {
+    margin-right: 8px;
+}
+
+#signUpBtn, #logInBtn {
+    background-color: #ff8000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(to bottom, #FF8000, #FF0000);
+    border-color: #ff8000;
+}
+
+    #signUpBtn:hover, #logInBtn:hover {
+        background: linear-gradient(to bottom, #FF0000, #FF8000);
+    }
+
+.form-control.is-invalid {
+    border-style: solid;
+    border-width: 3px;
+}
+
+.nav-link {
+    color: #ffffff;
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+    .nav-link:hover {
+        color: #ff8000;
+    }
+
+.navbar-text {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.collapse-navbar-collapse {
+    background-color: #2d2d2d;
+}
+
+@media (max-width: 768px) {
+    .navbar-collapse {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-nav {
+        width: 100%;
+        flex-direction: column;
+    }
+
+        .navbar-nav .nav-item {
+            width: 100%;
+            margin: 0;
+        }
+
+            .navbar-nav .nav-item + .nav-item {
+                margin-top: 10px;
+            }
+
+    #logInForm {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+        #logInForm .col-auto {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+}

@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Citas de Medición";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+@model MVC.Models.CitaMedicionModel
+
+<meta charset="utf-8" />
+<link rel="stylesheet" href="~/css/Cliente/CitasMedicion.css" defer />
+<script src="~/js/Pages/Cliente/CitasMedicion.js" defer></script>
+<link rel="stylesheet" href="~/Calendario/evo-calendar/css/evo-calendar.css">
+<script src="~/Calendario/evo-calendar/js/evo-calendar.js"></script>
+
+<div class="main-container">
+    <div id="evoCalendar" class="calendar-container"></div>
+
+    <p id="instructions">Haga click en una cita del calendario para poder editarla o eliminarla. Estas acciones solo se pueden completar hasta el día antes de su cita.</p>
+
+    <div class="button-container">
+        <button type="button" id="deleteAppointment" class="deleteAppointment" disabled>Eliminar Cita</button>
+    </div>
+
+</div>

@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Cliente/IndexCliente.css" defer />
+<script src="~/js/Pages/Cliente/Index.js" defer></script>
+
+<!-- Contenedor para el banner de alerta -->
+<div id="alert-banner" style="display:none;"></div>
+
+<div class="welcome-container">
+    <h1 class="welcome-message">¡Hola, <span id="user-name"></span>!</h1>
+    <div class="logo-container">
+        <img src="~/Images/logotransparente.png" alt="Gym Logo" class="gym-logo">
+    </div>
+</div>

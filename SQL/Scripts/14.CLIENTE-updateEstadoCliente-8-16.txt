@@ -1,0 +1,31 @@
+USE [PhoenixFItness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_updateEstadoCliente]    Script Date: 16/08/2024 01:16:39 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the new or updated stored procedure 
+ALTER PROCEDURE [dbo].[sp_updateEstadoCliente]
+    @Cedula NVARCHAR(25) -- Parameter for cedula
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Update the estado field to 1 for the given cedula in the TUsuario table
+    UPDATE TUsuario
+    SET estado = 1
+    WHERE cedula = @Cedula;
+
+    -- Update the estado field in TPago for the record with the most recent fechaPago
+    UPDATE TPago
+    SET estado = 1
+    WHERE fechaPago = (
+        SELECT MAX(fechaPago)
+        FROM TPago
+        WHERE cedulaUsuario = @Cedula
+    )
+    AND cedulaUsuario = @Cedula;
+
+END;

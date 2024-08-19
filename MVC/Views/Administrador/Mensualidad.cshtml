@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Mensualidades";
+    Layout = "~/Views/Shared/_LayoutAdministrador.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/Administrador/Mensualidad.css" defer />
+<script src="~/js/Pages/Administrador/Mensualidad.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+<div class="text-center">
+    <h1 class="display-4">Administrador de Mensualidades</h1>
+</div>
+
+<div class="form-container">
+    <h1 class="display-6 text-center">Crear Membresía</h1>
+    <form id="formMembresia" class="needs-validation" novalidate>
+        <div id="createMembresia">
+            <div class="col-md-6 form-group">
+                <label for="tipo">Tipo</label>
+                <input type="text" class="form-control" id="tipo" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="mensualidad">Mensualidad</label>
+                <input type="number" class="form-control" id="mensualidad" required />
+            </div>
+            <div class="col-md-6 form-group">
+                <label for="matricula">Matricula</label>
+                <input type="number" class="form-control" id="matricula" required />
+            </div>
+        </div>
+        <div class="button-group d-flex justify-content-center">
+            <button type="submit" class="btn btn-orange" id="sendMembership">Crear</button>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <div class="table-container">
+        <h1 class="display-12 text-center">Lista de Membresías</h1>
+        <div class="container m-12">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <table id="datatable_membresias" class="table">
+                        <caption class="text-center">
+                            Tabla para ver las membresías
+                        </caption>
+                        <thead>
+                            <tr>
+                                <th class="centered">Nombre</th>
+                                <th class="centered">Mensualidad</th>
+                                <th class="centered">Matricula</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody_membresias"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

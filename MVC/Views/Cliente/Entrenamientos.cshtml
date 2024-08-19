@@ -1,0 +1,88 @@
+﻿@{
+    ViewData["Title"] = "Entrenamientos";
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+
+@model MVC.Models.ClienteModel
+
+<link rel="stylesheet" href="~/css/Cliente/Entrenamientos.css" asp-append-version="true" defer />
+<script src="~/js/Pages/Cliente/Entrenamiento.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<div class="container">
+    <div class="text-center">
+        <h1 class="display-4">Entrenamientos</h1>
+    </div>
+
+    <div class="form-container">
+        <form id="trainingForm" asp-action="SaveTraining" method="post" novalidate>
+            <div class="form-group">
+                <label for="training-name">Nombre del entrenamiento</label>
+                <input type="text" class="form-control" id="training-name" name="TrainingName" required placeholder="Nombre del entrenamiento" />
+            </div>
+            <div id="exercises-container">
+                <div class="exercise" id="exercise-template">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="exercise-name">Ejercicio</label>
+                            <select class="form-control ejercicio-name" name="Nombre" id="ejercicio-name">
+                                <!-- Options will be populated here -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="sets">Sets</label>
+                                <input type="number" class="form-control num-sets" id="sets" name="Sets" required min="1" placeholder="Sets" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="weight">Peso (kg)</label>
+                                <input type="number" class="form-control peso" id="peso" name="Weight" required min="0" step="0.1" placeholder="Peso" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="time">Tiempo (min)</label>
+                                <input type="number" class="form-control tiempo" id="tiempo" name="Time" required min="0" step="0.1" placeholder="Tiempo" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btnGroup d-flex justify-content-center text-center">
+                <button type="button" class="btn btn-orange" onclick="addExercise()">Agregar Ejercicio</button>
+                <button type="submit" class="btn btn-danger">Guardar Entrenamiento</button>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="text-center">
+        <h1 class="display-4">Ver Entrenamientos</h1>
+    </div>
+
+    <div class="table-container">
+        <h1 class="display-12">Lista de entrenamientos</h1>
+        <div class="container m-12">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                    <table id="datatable_entrenamiento" class="table">
+                        <thead>
+                            <tr>
+                                <th class="centered">Nombre</th>
+                                <th class="centered">Fecha</th>
+                                <th class="centered">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody_entrenamientos"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

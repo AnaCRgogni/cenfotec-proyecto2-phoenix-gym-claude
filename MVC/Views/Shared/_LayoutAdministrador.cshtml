@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/Layouts/Administrador_Layout.css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
+    <script src="~/js/site.js"></script>
+    <title>@ViewData["Title"] Administrador</title>
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- DataTables -->
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js" defer></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js" defer></script>
+    <!-- SweetAlert  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+    <div class="page-container">
+        <header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Administrador" asp-action="Index">
+                    <div id="logo-container" class="logo-container dynamic-text">
+                        <img src="~/Images/logotransparente.png" alt="Phoenix Fitness Logo" width="65" height="65" class="d-inline-block align-top" />
+                    </div>
+                    <div class="gym-name dynamic-text">
+                        <span class="gym-word">Phoenix</span>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center collapse-navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item d-flex align-items-center justify-content-center">
+                            <a class="nav-link text-center" asp-area="" asp-controller="Administrador" asp-action="CitasMedicion">Citas de<br>Medición</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="Clases">Clases</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="Usuarios">Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="Mensualidad">Mensualidades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="Descuentos">Descuentos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="CreateRecepcionista">Recepcionistas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="CreateEntrenador">Entrenadores</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="user-icon" class="d-none d-sm-block">
+                    <img src="~/Images/usuario.png" alt="Icono de Usuario" width="30" height="30" class="d-inline-block align-top" />
+                </div>
+                <span class="navbar-text d-none d-sm-block">
+                    <a class="nav-link" asp-area="" asp-controller="Administrador" asp-action="VerCuenta">Mi cuenta</a>
+                </span>
+            </nav>
+        </header>
+
+        <div class="container">
+            <main role="main" class="content-wrapper">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-center">
+            <div>
+                &copy; 2024 - Phoenix Fitness <span>™</span>
+            </div>
+        </footer>
+
+    </div>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

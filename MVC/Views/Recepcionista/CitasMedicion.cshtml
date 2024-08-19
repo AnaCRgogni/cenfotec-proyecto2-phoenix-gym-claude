@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Citas de Medicion";
+    Layout = "~/Views/Shared/_LayoutRecepcionista.cshtml";
+}
+
+@model MVC.Models.CitaMedicionModel
+
+<link rel="stylesheet" href="~/css/Recepcionista/CitasMedicion.css" defer />
+<script src="~/js/Pages/Recepcionista/CitasMedicion.js" defer></script>
+<link rel="stylesheet" href="~/Calendario/evo-calendar/css/evo-calendar.css">
+<script src="~/Calendario/evo-calendar/js/evo-calendar.js"></script>
+
+<div class="main-container">
+    <div class="cedula-container">
+        <div class="cedula-input-group">
+            <label id="cedulaLabel" for="cedula">Inserte la cédula del cliente al que desea programarle una cita de medición:</label>
+            <input type="text" id="cedula" placeholder="Cédula">
+        </div>
+        <div class="button-group">
+            <button id="submitCedula" class="btn-orange">Consultar citas del cliente</button>
+            <button id="resetCedula" class="btn-orange">Consultar otra cédula</button>
+        </div>
+    </div>
+
+    <div id="evoCalendar" class="calendar-container"></div>
+
+    <div class="form-container">
+        <p id="instructions">Añadir cita de medición</p>
+        <form id="availabilityForm">
+            <div class="input-row">
+                <div class="input-group">
+                    <label for="hour">Hora:</label>
+                    <select id="hour">
+                        @for (int i = 6; i <= 22; i++)
+                        {
+                            var hour = i > 12 ? i - 12 : i;
+                            var period = i < 12 ? "am" : "pm";
+                            <option value="@hour:00 @period">@hour:00 @period</option>
+                        }
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="date">Fecha (click en el calendario):</label>
+                    <input type="text" id="date" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="trainer">Entrenador:</label>
+                    <select id="trainer"></select>
+                </div>
+            </div>
+            <button type="button" id="addAppointment" class="btn-orange">Agregar Cita</button>
+
+            <p id="instructions">Cancelar cita de medición (seleccione una cita del calendario)</p>
+
+            <button type="button" id="cancelAppointment" class="cancelAppointment">Cancelar Cita</button>
+
+        </form>
+    </div>
+</div>
+
+
+  
+
+

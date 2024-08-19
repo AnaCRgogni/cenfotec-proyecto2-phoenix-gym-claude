@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Ejercicios";
+    Layout = "~/Views/Shared/_LayoutEntrenador.cshtml";
+}
+
+@model MVC.Models.ClienteModel
+
+<link rel="stylesheet" href="~/css/Entrenador/Entrenador_Ejercicios.css" asp-append-version="true" />
+<script src="~/js/Pages/Entrenador/Entrenador_Ejercicio.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
+
+
+
+    <div class="text-center">
+        <h1 class="display-4">Crear Ejercicios</h1>
+    </div>
+
+
+    <div class="form-container">
+                <form id="exerciseForm" asp-action="SaveExercise" method="post" enctype="multipart/form-data" novalidate>
+                    <div class="exercise" id="exercise-template">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="exercise-name">Nombre del Ejercicio</label>
+                                    <input type="text" class="form-control" name="Nombre" id="exercise-name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="exercise-description">Descripción</label>
+                                    <textarea class="form-control" name="Description" id="exercise-description" oninput="adjustTextareaHeight(this)"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exercise-name">Maquina</label>
+                                    <select class="form-control" name="Nombre" id="machine-name" />
+                                         <!-- Options will be populated here -->
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exercise-image">Imagen del Ejercicio</label>
+                                    <input type="file" class="form-control" name="Image" id="exercise-image" onchange="previewImage(this)" />
+                                </div>
+                            <div class="col-md-6 text-center">
+                                <img id="exercise-image-preview" src="" style="max-width: 300px; max-height: 300px; display: block; margin: 10px auto;" />
+                            </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+            <button type="submit" class="btn btn-orange">Guardar</button>
+                    <button type="button" class="btn btn-danger" onclick="resetForm()">Cancelar</button>
+                </form>
+            </div>
+   
+    <div class="text-center">
+        <h1 class="display-4">Ejercicios disponibles</h1>
+    </div>
+
+    <div class="cards-container">
+        <div class="row row-cols-1 row-cols-md-3 g-4" id="cards-container">
+            <!-- Cards will be populated here -->
+        </div>
+    </div>
+
+

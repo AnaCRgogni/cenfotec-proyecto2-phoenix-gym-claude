@@ -1,0 +1,157 @@
+----------------------------------------
+
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_getSinpe2]    Script Date: 09/08/2024 05:41:22 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the new or updated stored procedure 
+CREATE PROCEDURE [dbo].[sp_getHistorialPago]
+    @Cedula NVARCHAR(25) -- Parameter for cedula
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Declare a table variable to store results
+    DECLARE @PagosPrevios TABLE (
+		cedula NVARCHAR(25),
+		nombreCompleto NVARCHAR(75),
+        comprobante NVARCHAR(150), 
+        fechaPago DATE,
+        estadoUsuario BIT,
+        estadoPago BIT,
+        total FLOAT
+    );
+
+    -- Insert data into the table variable with the conditional total calculation
+    INSERT INTO @PagosPrevios (cedula, nombreCompleto, comprobante, fechaPago, estadoUsuario, estadoPago, total)
+    SELECT DISTINCT
+		TUsuario.cedula,
+		CONCAT(TUsuario.nombre, ' ', TUsuario.apellido1, ' ', TUsuario.apellido2) AS nombreCompleto,
+        TPago.comprobante, 
+        TPago.fechaPago, 
+        TUsuario.estado AS estadoUsuario,
+        TPago.estado AS estadoPago,
+        CASE 
+            WHEN TUsuario.estado = 0 THEN TMembresia.mensualidad + TMembresia.matricula
+            WHEN TUsuario.estado = 1 THEN TMembresia.mensualidad
+            ELSE 0 -- Handle unexpected state values
+        END AS total
+FROM TUsuario
+INNER JOIN  TPago 
+    ON TUsuario.cedula = TPago.cedulaUsuario
+INNER JOIN  TMembresia
+    ON TPago.idMembresia = TMembresia.idMembresia
+    WHERE TUsuario.cedula = @Cedula;
+
+    -- Select data from the table variable to output the results
+    SELECT cedula, nombreCompleto, comprobante, fechaPago, estadoUsuario, estadoPago, total 
+    FROM @PagosPrevios;
+
+END;
+
+------------------------------------------
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_updateEstadoCliente]    Script Date: 09/08/2024 12:29:52 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the new or updated stored procedure 
+CREATE PROCEDURE [dbo].[sp_updateDeshabilitarCuenta]
+    @Cedula NVARCHAR(25) -- Parameter for cedula
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Update the estado field to 1 for the given cedula in the TUsuario table
+    UPDATE TUsuario
+    SET estado = 0
+    WHERE cedula = @Cedula;
+
+    -- Update the estado field in TPago for the record with the most recent fechaPago
+    UPDATE TPago
+    SET estado = 1
+    WHERE fechaPago = (
+        SELECT MAX(fechaPago)
+        FROM TPago
+        WHERE cedulaUsuario = @Cedula
+    )
+    AND cedulaUsuario = @Cedula;
+
+END;
+
+------------------------------------------
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_getEmailClientes]    Script Date: 09/08/2024 03:43:46 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the new or updated stored procedure 
+ALTER PROCEDURE [dbo].[sp_getEmailClientes]
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+-- Declare a table variable to store results
+    DECLARE @CorreoClientes TABLE (
+		id INT IDENTITY(1,1), -- Adding an ID column with unique values
+        nombre NVARCHAR(25),
+		cedula NVARCHAR(25),
+        email NVARCHAR(50),
+		idMembresia INT
+    );
+
+    -- Insert data into the table variable from Clients and Membership tables
+    INSERT INTO @CorreoClientes (nombre, cedula, email, idMembresia)
+    SELECT c.nombre, c.cedula, c.email, c.idMembresia
+    FROM TUsuario c
+	WHERE c.rolUsuario = 'Cliente';
+
+    -- Select data from the table variable
+    SELECT ID, nombre, cedula, email 
+    FROM @CorreoClientes;
+END
+
+------------------------------------------
+
+USE [PhoenixFitness]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_updateDeshabilitarCuenta]    Script Date: 10/08/2024 08:59:08 a. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+-- Create the new or updated stored procedure 
+CREATE PROCEDURE [dbo].[sp_updateDeshabilitarCuenta]
+    @Cedula NVARCHAR(25) -- Parameter for cedula
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    -- Update the estado field to 1 for the given cedula in the TUsuario table
+    UPDATE TUsuario
+    SET estado = 0
+    WHERE cedula = @Cedula;
+
+    -- Update the estado field in TPago for the record with the most recent fechaPago
+    UPDATE TPago
+    SET estado = 1
+    WHERE fechaPago = (
+        SELECT MAX(fechaPago)
+        FROM TPago
+        WHERE cedulaUsuario = @Cedula
+    )
+    AND cedulaUsuario = @Cedula;
+
+END;
+
